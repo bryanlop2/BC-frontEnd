@@ -56,6 +56,22 @@ class Cat {
         }
     }
 
+    leaveAlone() {
+        if(this.loneliness < 10) {
+            return this.loneliness += 1;
+        }else{
+            return 'Your cat is so tired, cant take a walk'
+        }
+    }
+
+    dontFeed(){
+        if(this.hunger < 10) {
+            return this.hunger += 1;
+        }else{
+            return 'Your cat is so tired, cant take a walk'
+        }
+    }
+
 
 }
 
