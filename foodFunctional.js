@@ -51,3 +51,9 @@ function eatWithReduce(){
 }
 
 console.log(eatWithReduce());
+
+
+[1,2,3,4].map((number, index) =>
+({
+    [index]: number
+}))
