@@ -11,24 +11,16 @@ function fallocallBack(error) {
     console.log('Error generando archivo de audio' + error);
 }
 
-/*const promise = crearArchivoAudioAsync(audioConfig);
-promise.then(exitoCallBakc, fallocallBack)
-
 // las funciones llamadas con then, seran llamadas incluso despues del 
 // exito o fracaso de la operación
 
 // múltiples funciones callback pueden ser añadidas llamando a then
 // varias veces, cada una e ejecuta seguida de la otra
 
-const promesa = hazAlgo();
-const promesa2 = promesa.then(exitoCallBakc, fallocallBack);
-
 // cada promesa representa la terminacion de otro paso asíncrono o no
 
 // promise resolve hace referencia a una promesa resuelta 
 // y promise reject hace referencia a una promesa rechazada
-
-Promise.resolve().then(func1).then(func2).then(func3)*/
 
 
 Promise.resolve()
@@ -38,9 +30,9 @@ console.log(0); // retorna 0, promise, another promise
 
 
 
-let ejemplo = Promise.resolve([1,2,3]);
-ejemplo
-.then(function(datoABuscar){
+let newPromise = Promise.resolve([1,2,3]);
+
+newPromise.then(function(datoABuscar){
     console.log(datoABuscar[0]) // 1
 })
 .then(function(){
@@ -52,6 +44,8 @@ ejemplo
 
 // we use promises chaining
 
+// new Pormise retorna un objeto del tipo promesa
+// tiene 3 posibles estados; pendiente: undefined, fulfilled: value, failure: error
 
 const myPromise = new Promise((resolve, reject) => {
     let connection = true;
@@ -61,12 +55,6 @@ const myPromise = new Promise((resolve, reject) => {
         reject('Connection refused')
     }
 })
-
-myPromise.then((message) => {
-    console.log(message);
-}).catch((message) => {
-    console.log(message)
-});
 
 
 let otherPromise = new Promise((resolve, reject) => {
@@ -81,6 +69,17 @@ let otherPromise = new Promise((resolve, reject) => {
 otherPromise.then((message) => {
     console.log('This is in then ' + message);
 }).catch((message) => {
-    console.log('This is in the catch' + message);
+    console.log('This is in the catch ' + message);
 })
 
+
+let promise = Promise.resolve([1,2,3]);
+
+promise.then(result => {
+    let oneNumber = result[0];
+    return oneNumber;
+}).then(firstNumber => {
+    console.log(firstNumber);
+}).catch(error => {
+    console.log(`Error: ${error}`)
+})
