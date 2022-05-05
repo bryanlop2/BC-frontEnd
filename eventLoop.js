@@ -45,7 +45,7 @@ newPromise.then(function(datoABuscar){
 // we use promises chaining
 
 // new Pormise retorna un objeto del tipo promesa
-// tiene 3 posibles estados; pendiente: undefined, fulfilled: value, failure: error
+// tiene 3 posibles estados; pending: undefined, fulfilled: value, rejected: error
 
 const myPromise = new Promise((resolve, reject) => {
     let connection = true;
