@@ -1,5 +1,6 @@
 const cardContent = document.getElementById('pokemonContent');
-
+let header = document.getElementById('header');
+let footer = document.getElementById('footer');
 
 const dataPokemons = {
     "count": 1118,
@@ -291,7 +292,7 @@ function getPokemonImageUri (id) {
 
   console.log(getPokemonImageUri(1));
 
-function  createPokemonCard(pokemon){
+function createPokemonCard(pokemon){
 
   const pokemonEl = document.createElement('div');
     
@@ -302,16 +303,17 @@ function  createPokemonCard(pokemon){
 	pokemonEl.style.backgroundColor = color;
 
 	
-        const pokeInnerHTML = `
-        <div class="img-container">
-            <img src="${getPokemonImageUri(pokemon.id)}" alt="${name}" />
-        </div>
-        <div class="info">
-            <h3 class="name">${name}</h3>
-        </div>
+    const pokeInnerHTML = `
+    <div class="img-container">
+        <img src="${getPokemonImageUri(pokemon.id)}" alt="${name}" />
+    </div>
+    <div class="info">
+        <h3 class="name">${name}</h3>
+    </div>
     `;
-        pokemonEl.innerHTML = pokeInnerHTML;
-        cardContent.appendChild(pokemonEl);
+    
+  pokemonEl.innerHTML = pokeInnerHTML;
+  cardContent.appendChild(pokemonEl);
 
 
 }
