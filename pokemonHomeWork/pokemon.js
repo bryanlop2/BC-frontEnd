@@ -1,6 +1,4 @@
 const cardContent = document.getElementById('pokemonContent');
-let header = document.getElementById('header');
-let footer = document.getElementById('footer');
 
 const dataPokemons = {
     "count": 1118,

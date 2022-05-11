@@ -1,27 +1,19 @@
-.pokemon-header{
+body{
+    padding: 10px;
+}
+
+.header{
     grid-area: header;
+    height: 150px;
+    width: 150px;
 }
 
-.pokemon-footer{
+.footer{
     grid-area: footer;
+    height: 150px;
+    width: 150px;
+    display: flex;
 }
-
-.container{
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
-    grid-template-rows: auto;
-    grid-template-areas: 
-    "header header header header header header"
-    ". . card card card card . ."
-    "footer footer footer footer footer footer";
-}
-
-img{
-    max-width: 100%;
-}
-
-
-/*Pokemon Cards*/
 
 .pokemon-card{
     grid-area: card;
@@ -29,31 +21,27 @@ img{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px 10% 10px 10%;
 	gap: 20px;
+    padding: 10px 7% 10px 7%;
 }
 
 .pokemon{
 	border-radius: 8px;
 	box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
 	text-align: center;
-    width: 200px;
 }
 
-.pokemon .img-container {
-	border-radius: 20px;
-	width: 140px;
-	height: 140px;
-	text-align: center;
-    margin: auto;
+.container{
+    display: grid;
+    width: 100%;
+    grid-template-areas: 
+    "header . . . . ."
+    ". card card card card ."
+    ". footer footer footer footer footer";
+    gap: 10px;
+    grid-template-columns: repeat(6, 1fr);
 }
 
-.pokemon .img-container img {
-	margin-top: 20px;
-	max-width: 100%;
-}
-
-.pokemon .name {
-	margin: 15px 0 7px;
-	letter-spacing: 1px;
+img{
+    max-width: 100%;
 }
