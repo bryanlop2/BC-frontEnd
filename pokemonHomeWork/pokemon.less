@@ -1,0 +1,51 @@
+@width: 150px;
+@heigth: 150px;
+@shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+@areas: "header . . . . ."
+". card card card card ."
+". footer footer footer footer footer";
+@repeat: repeat(6, 1fr);
+
+body{
+    padding: 10px;
+}
+
+.header{
+    grid-area: header;
+    height: @width;
+    width: @heigth;
+}
+
+.footer{
+    grid-area: footer;
+    height:  @width;
+    width: @heigth;
+    display: flex;
+}
+
+.pokemon-card{
+    grid-area: card;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+	gap: 20px;
+}
+
+.pokemon{
+	border-radius: 8px;
+	box-shadow: @shadow;
+	text-align: center;
+}
+
+.container{
+    display: grid;
+    width: 100%;
+    grid-template-areas: @areas;
+    gap: 10px;
+    grid-template-columns: @repeat;
+}
+
+img{
+    max-width: 100%;
+}

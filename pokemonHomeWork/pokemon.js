@@ -280,11 +280,9 @@ const colors = {
 }
 
 const main_types = Object.values(colors)
-console.log(main_types)
 
 function getPokemonImageUri (id) {
     const imageId = ('00' + id).slice(-3); // para 1 => 001
-    console.log(imageId);
     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
   }
 
