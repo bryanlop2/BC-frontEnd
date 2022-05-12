@@ -1,18 +1,19 @@
 body {
-  padding: 10px;
+  padding: 4px;
 }
-.header {
+.container {
+  display: grid;
+  width: 100%;
+  grid-template-areas: ". header . . . ." ". card card card card ." ". . footer footer footer footer";
+  gap: 10px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.container .header {
   grid-area: header;
   height: 150px;
   width: 150px;
 }
-.footer {
-  grid-area: footer;
-  height: 150px;
-  width: 150px;
-  display: flex;
-}
-.pokemon-card {
+.container .pokemon-card {
   grid-area: card;
   display: flex;
   justify-content: center;
@@ -20,17 +21,23 @@ body {
   flex-wrap: wrap;
   gap: 20px;
 }
-.pokemon {
+.container .pokemon-card .pokemon {
   border-radius: 8px;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
   text-align: center;
+  -webkit-text-stroke: 0.5px #332e2e;
+  color: #ffffff;
 }
-.container {
-  display: grid;
-  width: 100%;
-  grid-template-areas: "header . . . . ." ". card card card card ." ". footer footer footer footer footer";
-  gap: 10px;
-  grid-template-columns: repeat(6, 1fr);
+.container .pokemon-card .pokemon .img-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  text-align: center;
+}
+.container .footer {
+  grid-area: footer;
+  height: 100px;
+  width: 100px;
+  display: flex;
 }
 img {
   max-width: 100%;

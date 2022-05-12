@@ -1,41 +1,17 @@
 @width: 150px;
 @heigth: 150px;
+@widthImages: 100px;
+@heigthImages: 100px;
 @shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
-@areas: "header . . . . ."
+@areas: ". header . . . ."
 ". card card card card ."
-". footer footer footer footer footer";
+". . footer footer footer footer";
 @repeat: repeat(6, 1fr);
+@color-container: rgba(255, 255, 255, 0.6);
+@web: 0.5px rgb(51, 46, 46);
 
 body{
-    padding: 10px;
-}
-
-.header{
-    grid-area: header;
-    height: @width;
-    width: @heigth;
-}
-
-.footer{
-    grid-area: footer;
-    height:  @width;
-    width: @heigth;
-    display: flex;
-}
-
-.pokemon-card{
-    grid-area: card;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-	gap: 20px;
-}
-
-.pokemon{
-	border-radius: 8px;
-	box-shadow: @shadow;
-	text-align: center;
+    padding: 4px;
 }
 
 .container{
@@ -44,6 +20,38 @@ body{
     grid-template-areas: @areas;
     gap: 10px;
     grid-template-columns: @repeat;
+    .header{
+        grid-area: header;
+        height: @heigth;
+        width: @width;
+    }
+    .pokemon-card{
+        grid-area: card;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+        .pokemon{
+            border-radius: 8px;
+            box-shadow: @shadow;
+            text-align: center;
+            -webkit-text-stroke: @web;
+            color: rgb(255, 255, 255);
+        }
+        .pokemon .img-container {
+            background-color: @color-container;
+            border-radius: 8px;
+            text-align: center;
+        }
+    }
+    .footer{
+        grid-area: footer;
+        height:  @widthImages;
+        width: @widthImages;
+        display: flex;
+    }
+
 }
 
 img{
