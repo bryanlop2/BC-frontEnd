@@ -16,14 +16,11 @@ body{
 .container{
     display: grid;
     grid-template-areas: @areas;
-    gap: 10px;
+    gap: 20px;
     grid-template-columns: @repeat;
     .header{
         grid-area: header;
-        height: 160px;
-        width: 100%;
         background-color: @primary;
-        justify-content: center;
     }
     .pokemon-card{
         grid-area: card;
@@ -47,10 +44,12 @@ body{
     }
     .footer{
         grid-area: footer;
-        height:  100px;
         display: flex;
         background-color: @primary;
         justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
     }
 
 }
