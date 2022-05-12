@@ -110,7 +110,7 @@ const dataPokemons = {
 
 
 
-const listPokemons = async () =>{
+const listPokemons = () =>{
     const totalPokemons = dataPokemons.results
     for (let i = 0; i <= totalPokemons.length; i++) {
 		fetchPokemon(i);
@@ -294,7 +294,7 @@ function createPokemonCard(pokemon){
     
 	pokemonEl.classList.add('pokemon');
   const name = pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
-	const color = main_types[pokemon.id];
+	const color = main_types[pokemon.id-1];
     
 	pokemonEl.style.backgroundColor = color;
 

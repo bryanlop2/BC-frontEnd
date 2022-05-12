@@ -1,14 +1,13 @@
-@width: 150px;
-@heigth: 150px;
-@widthImages: 100px;
-@heigthImages: 100px;
+@primary: #082040;
+@extra: rgb(255, 255, 255);
 @shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
-@areas: ". header . . . ."
+@areas: "header header header header header header"
 ". card card card card ."
-". . footer footer footer footer";
+"footer footer footer footer footer footer";
 @repeat: repeat(6, 1fr);
 @color-container: rgba(255, 255, 255, 0.6);
-@web: 0.5px rgb(51, 46, 46);
+@web: 0.4px rgb(15, 10, 32);
+
 
 body{
     padding: 4px;
@@ -16,14 +15,15 @@ body{
 
 .container{
     display: grid;
-    width: 100%;
     grid-template-areas: @areas;
     gap: 10px;
     grid-template-columns: @repeat;
     .header{
         grid-area: header;
-        height: @heigth;
-        width: @width;
+        height: 160px;
+        width: 100%;
+        background-color: @primary;
+        justify-content: center;
     }
     .pokemon-card{
         grid-area: card;
@@ -37,7 +37,7 @@ body{
             box-shadow: @shadow;
             text-align: center;
             -webkit-text-stroke: @web;
-            color: rgb(255, 255, 255);
+            color: @extra;
         }
         .pokemon .img-container {
             background-color: @color-container;
@@ -47,9 +47,10 @@ body{
     }
     .footer{
         grid-area: footer;
-        height:  @widthImages;
-        width: @widthImages;
+        height:  100px;
         display: flex;
+        background-color: @primary;
+        justify-content: center;
     }
 
 }
