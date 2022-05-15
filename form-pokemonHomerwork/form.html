@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Pókemon Form</title>
+</head>
+<body>
+    <form>
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-4">
+                    <h1>POKEMON QUIZ</h1>
+                  </div>
+            </div>
+            <div class="row justify-content-around mt-3">
+                <div class="col col-lg-3">
+                <div class="form-group">
+                    <label for="pokemonName" class="lead"><b>Q1: Pokemon Name</b></label>
+                    <input 
+                    type="text" 
+                    class="form-control 
+                    p-3 mb-2 border border-info" 
+                    id="pokemonName"
+                    aria-describedby="NameHelp"
+                    placeholder="Enter Pókemon Name"
+                    data-toggle="collapse" 
+                    href="#collapseName">
+                </div>
+                <div class="form-group">
+                    <label for="pokemonType" class="lead"><b>Q2: Pokemon Type</b> </label>
+                    <input 
+                    type="text" 
+                    class="form-control
+                    p-3 mb-2 border border-info" 
+                    id="pokemonType"
+                    aria-describedby="TypeHelp"
+                    placeholder="Enter Pókemon Type"data-toggle="collapse" 
+                    href="#collapseType" >
+                </div>
+                <div class="form-group">
+                    <label for="pokemonGeneration" class="lead"><b>Q3: Pokemon Generation</b> </label>
+                    <input 
+                    type="text" 
+                    class="form-control
+                    p-3 mb-2 border border-info" 
+                    id="pokemonGeneration"
+                    aria-describedby="GenerationHelp"
+                    placeholder="Enter Pókemon Generation" 
+                    data-toggle="collapse" 
+                    href="#collapseGeneration">
+                </div>
+                <div class="form-group">
+                    <label for="pokemonURL" class="lead"><b>Pokemon Ability:</b></label>
+                    <input 
+                    type="text" 
+                    class="form-control
+                    p-3 mb-2 border border-info" 
+                    id="pokemonURL"
+                    aria-describedby="URLHelp"
+                    placeholder="Enter Pókemon URL" 
+                    data-toggle="collapse" 
+                    href="#collapseURL">
+                </div>
+                <div class="form-group">
+                    <label for="pokemonColor" class="lead"><b>Pokemon Color:</b></label>
+                    <input 
+                    type="text" 
+                    class="form-control
+                    p-3 mb-2 border border-info" 
+                    id="pokemonColor"
+                    aria-describedby="ColorHelp"
+                    placeholder="Enter Pókemon main color" 
+                    data-toggle="collapse" 
+                    href="#collapseColor">
+                </div>
+                </div>
+                <div class="col col-lg-6 border border-5 border-secondary rounded
+                p-3 mb-2 primary text-white">
+                    <div class="row justify-content-center">
+                        <h1 class="lead"><b>HINT</b></h1>
+                    </div>
+                    <div class="mt-2 contanier p-3 border border-white">
+                        <div class="collapse" id="collapseName">
+                            <h5 id="NameHelp" class="form-text text-muted">
+                                Ash favorite Pókemon 🧐.
+                            </h5>
+                        </div>
+                        <div class="collapse" id="collapseType">
+                            <h5 id="TypeHelp" class="form-text text-muted">
+                                Shine like a spark.
+                            </h5>
+                        </div>
+                        <div class="collapse" id="collapseGeneration">
+                            <h5 id="GenerationHelp" class="form-text text-muted">
+                                He was with him since the beginning.
+                            </h5>
+                        </div> 
+                        <div class="collapse" id="collapseURL">
+                            <h5 id="URLHelp" class="form-text text-muted">
+                                Something like "stand still".
+                            </h5>
+                        </div>
+                        <div class="collapse" id="collapseColor">
+                            <h5 id="ColorHelp" class="form-text text-muted">
+                                The same color as the summer.
+                            </h5>
+                        </div>  
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+</body>
+</html>

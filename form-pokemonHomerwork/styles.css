@@ -1,0 +1,12 @@
+
+input:placeholder-shown {
+    background-color:  #afc2c7!important;
+}
+
+::-webkit-input-placeholder { 
+    color: rgb(255, 255, 255)!important;
+}
+
+.primary{
+    background-color: #afc2c7;
+}
