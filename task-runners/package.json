@@ -1,0 +1,13 @@
+{
+  "name": "task-runners",
+  "version": "1.0.0",
+  "description": "",
+  "main": "preinstall.js",
+  "scripts": {
+     "preinstall": "node ./preinstall.js",
+     "preinstallForYarn": "npx only-allow yarn"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
