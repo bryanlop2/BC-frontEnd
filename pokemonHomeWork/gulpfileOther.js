@@ -4,9 +4,7 @@ uglify = require('gulp-uglify'),
 minifycss =require('gulp-minify-css'),
 concatify = require('gulp-concat'),
 less = require('gulp-less'),
-clean = require('gulp-clean'),
-watch = require('gulp-watch'),
-inject = require('gulp-inject');
+clean = require('gulp-clean');
 
 
 gulp.task('minify-js', function () {
@@ -33,7 +31,7 @@ gulp.task('concatify', function() {
 gulp.task('less', function() {
   return gulp.src('src/pokemon.less')
   .pipe(less())
-  .pipe(gulp.dest('dist'));
+  .pipe(gulp.dest('dist/css'));
 });
 
 gulp.task('clean', function(){
@@ -41,24 +39,3 @@ gulp.task('clean', function(){
   .pipe(clean({force: true}))
   .pipe(gulp.dest('dist'));
 })
-
-gulp.task('watch', function() {
-    return gulp.src('src/pokemon.less')
-    .pipe(watch('src/pokemon.less'))
-    .pipe(concat('main.css'))
-    .pipe(less())
-    .pipe(gulp.dest('dist/css'));
-});
-
-gulp.task('inject', function () {
-    return gulp.src('src/pokemon.html')
-      .pipe(inject(
-        gulp.src('**/*.js'), {
-          relative: true
-        }))
-      .pipe(inject(
-        gulp.src('**/*.css'), {
-          relative: true
-        }))
-      .pipe(gulp.dest('dist'));
-});
