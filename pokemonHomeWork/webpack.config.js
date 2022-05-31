@@ -1,18 +1,17 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
-const CopyPlugin = require("copy-webpack-plugin");
-const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: './src/index.js',
     output: {
-        filename: 'pokemon.js'
+        filename: '[name].js'
     },
     mode: 'production',
     module: {
         rules: [
             {
-                test: [/\.(c|sc|sa)ss$/, /\.html$/i],
+                test: /\.(c|sc|sa)ss$/,
                 type: 'asset/resource',
                 use: [
                     {
@@ -24,19 +23,15 @@ module.exports = {
             }
         ]
     },
-    plugins: [
+    plugins: [ 
+        new HtmlWebpackPlugin({
+            inject: 'body',
+            template: './src/pokemon.html',
+            filename: '[name].html'
+        }),
         new MiniCssExtractPlugin({
             filename: 'styles.css'
-        }),
-        new CopyPlugin({
-            patterns: [
-              {
-                context: path.resolve(__dirname, "dist"),
-                from: "./src/pokemon.html",
-              },
-            ],
-          }),
-          
+        })          
     ],
     optimization: {
         minimize: true,
