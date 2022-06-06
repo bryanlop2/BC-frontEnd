@@ -9,7 +9,7 @@ function checkPP(){
   descriptor: PropertyDescriptor){
     const newvalue = descriptor.value;
     descriptor.value = function() {
-      if(this.ppAvailable < 1){
+      if(this.ppAvailable <= 0){
         console.log(`Cannot use this move ${propertyKey} not enough PP`)
       }else{
         newvalue.apply(this, arguments)
