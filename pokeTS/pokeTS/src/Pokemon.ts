@@ -16,23 +16,43 @@ export function getSinglePokemon(id: string | number) {
   return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
 
-async function getPokemonInfo(id: string | number){
-  const totalPokemons = (await getSinglePokemon(id)).data; 
-    for (let i = 0; i <= totalPokemons.length; i++) {
-      getSinglePokemon(i);
+export async function getAllInfo(id: string | number){
+  try{
+    const response = await getSinglePokemon(id);
+    const values = JSON.stringify(response.data);
+    return values;
+  }catch(error){
+    console.log(error)
   }
 }
 
-async function getTypes(id: string | number){
-  const results = (await getSinglePokemon(id)).data;
-  const types: Type = results.types;
-  return types;
+export async function getTypes(id: string | number){
+  try{
+    const response = await getSinglePokemon(id);
+    const size = Object(response.data.types)
+    for(let i = 0; i < size.length; i++){
+      let types = JSON.stringify(response.data.types[i].type);
+      console.log(types);
+    }
+  }catch(error){
+    console.log(error);
+  }
 }
 
-async function getMoves(id: string | number){
-  const results = (await getSinglePokemon(id)).data;
-  const moves: Move = results.moves;
-  return moves;
+export async function getMoves(id: string | number){
+  try{
+    const response = await getSinglePokemon(id);
+    const size = Object(response.data.moves);
+    const moves = JSON.stringify(response.data.moves);
+    for(let i=0; i<4; i++){
+      let index: number =Math.floor(Math.random()*size.length);
+      let moves = JSON.stringify(response.data.moves[index].move);
+      console.log(moves);
+    }
+    return moves;
+  }catch(error){
+    console.log(error);
+  }
 }
 
 function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
@@ -41,15 +61,19 @@ function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
   }
 }
 
-function getNewPokemons2(){
-  return function (target: Object,
+function newPokemons<T>(): any {
+  return(
+    target: Object,
     propertyKey: string,
-    descriptor: PropertyDescriptor){
-      const result = descriptor.value;
-      descriptor.value = function(){
-        result.apply(this, arguments);
-      }
-    }
+    descriptor: any
+  ) : TypedPropertyDescriptor<T> =>{
+    const newPokemon = descriptor.value;
+    descriptor.value = function(...args: any[])
+    {
+      return newPokemon.apply(this, args).then((res: Response) => res.json());
+    };
+    return descriptor;
+  }
 }
 
 type Move = {
@@ -79,6 +103,7 @@ export class Pokemon {
   buildFieldsPokemon(pokemon: any) {
     this.name = pokemon.name;
     this.id = pokemon.id;
+    //this.moves = getMoves(pokemon.move)
     // you can only choose four moves from the list of moves
     // this.moves = someFn(pokemon.moves);
   }
