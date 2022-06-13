@@ -14,6 +14,12 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -51,112 +57,79 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.PokemonTrainer = exports.Pokemon = exports.getMoves = exports.getTypes = exports.getAllInfo = exports.getSinglePokemon = void 0;
+exports.PokemonTrainer = exports.Pokemon = exports.getIDs = exports.getAllPokemonInfo = exports.getSinglePokemon = void 0;
 var axios_1 = require("axios");
+var MAX_POKEMONS = 500;
 function getSinglePokemon(id) {
     return axios_1["default"].get("https://pokeapi.co/api/v2/pokemon/".concat(id));
 }
 exports.getSinglePokemon = getSinglePokemon;
-function getAllInfo(id) {
+function getAllPokemonInfo(pokemon) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, values, error_1;
+        var response, name, id, moves, types;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4, getSinglePokemon(id)];
+                case 0: return [4, getSinglePokemon(pokemon)];
                 case 1:
                     response = _a.sent();
-                    values = JSON.stringify(response.data);
-                    return [2, values];
-                case 2:
-                    error_1 = _a.sent();
-                    console.log(error_1);
-                    return [3, 3];
-                case 3: return [2];
+                    name = response.data.name;
+                    id = response.data.id;
+                    moves = [];
+                    types = [];
+                    getMoves(response, moves);
+                    getTypes(response, types);
+                    return [2, { name: name, id: id, moves: moves, types: types }];
             }
         });
     });
 }
-exports.getAllInfo = getAllInfo;
-function getTypes(id) {
+exports.getAllPokemonInfo = getAllPokemonInfo;
+function getTypes(response, types) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, size, i, types, error_2;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4, getSinglePokemon(id)];
-                case 1:
-                    response = _a.sent();
-                    size = Object(response.data.types);
-                    for (i = 0; i < size.length; i++) {
-                        types = JSON.stringify(response.data.types[i].type);
-                        console.log(types);
-                    }
-                    return [3, 3];
-                case 2:
-                    error_2 = _a.sent();
-                    console.log(error_2);
-                    return [3, 3];
-                case 3: return [2];
-            }
+            response.data.types.forEach(function (pokemonTypes) {
+                var name = pokemonTypes.type.name;
+                var url = pokemonTypes.type.url;
+                types.push({ name: name, url: url });
+            });
+            return [2];
         });
     });
 }
-exports.getTypes = getTypes;
-function getMoves(id) {
+function getMoves(response, moves) {
     return __awaiter(this, void 0, void 0, function () {
-        var response, size, moves, i, index, moves_1, error_3;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4, getSinglePokemon(id)];
-                case 1:
-                    response = _a.sent();
-                    size = Object(response.data.moves);
-                    moves = JSON.stringify(response.data.moves);
-                    for (i = 0; i < 4; i++) {
-                        index = Math.floor(Math.random() * size.length);
-                        moves_1 = JSON.stringify(response.data.moves[index].move);
-                        console.log(moves_1);
-                    }
-                    return [2, moves];
-                case 2:
-                    error_3 = _a.sent();
-                    console.log(error_3);
-                    return [3, 3];
-                case 3: return [2];
-            }
+            response.data.moves.forEach(function (pokeMoves) {
+                var name = pokeMoves.move.name;
+                var url = pokeMoves.move.url;
+                moves.push({ name: name, url: url });
+            });
+            return [2];
         });
     });
 }
-exports.getMoves = getMoves;
-function getNewPokemons(constructor) {
-    return (function (_super) {
-        __extends(class_1, _super);
-        function class_1() {
-            var _this = _super !== null && _super.apply(this, arguments) || this;
-            _this.listOfIds = [1, 2, 3];
-            return _this;
-        }
-        return class_1;
-    }(constructor));
-}
-function newPokemons() {
-    return function (target, propertyKey, descriptor) {
-        var newPokemon = descriptor.value;
-        descriptor.value = function () {
-            var args = [];
-            for (var _i = 0; _i < arguments.length; _i++) {
-                args[_i] = arguments[_i];
+function getNewPokemons(teamSize) {
+    return function (constructor) {
+        return (function (_super) {
+            __extends(class_1, _super);
+            function class_1() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.listOfIds = getIDs(teamSize, MAX_POKEMONS);
+                return _this;
             }
-            return newPokemon.apply(this, args).then(function (res) { return res.json(); });
-        };
-        return descriptor;
+            return class_1;
+        }(constructor));
     };
 }
+function getIDs(size, max) {
+    var pokemonID = [];
+    while (pokemonID.length < size) {
+        var random = Math.floor(Math.random() * max);
+        pokemonID.push(random);
+    }
+    return pokemonID;
+}
+exports.getIDs = getIDs;
 var Pokemon = (function () {
     function Pokemon(pokemonResult) {
         this.name = '';
@@ -168,15 +141,27 @@ var Pokemon = (function () {
     Pokemon.prototype.buildFieldsPokemon = function (pokemon) {
         this.name = pokemon.name;
         this.id = pokemon.id;
+        this.moves = this.fourMoves(pokemon.moves);
+        this.types = pokemon.types;
+    };
+    Pokemon.prototype.fourMoves = function (moves) {
+        var selectedMove = [];
+        for (var i = 0; i < 4; i++) {
+            var index = Math.floor(Math.random() * moves.length);
+            selectedMove.push(moves[index]);
+        }
+        return selectedMove;
     };
     Pokemon.prototype.displayInfo = function () {
-        console.log("==========================");
+        console.log("============================== (\uFF3E\uFF56\uFF3E)");
         console.log("".concat(this.id, " ").concat(this.name));
+        console.log('\n 🔰 Types:');
         this.types.forEach(function (type) {
-            console.log("".concat(type.name));
+            console.log("- NAME: ".concat(type.name, ", URL: ").concat(type.url));
         });
+        console.log('\n ✨ Moves:');
         this.moves.forEach(function (move) {
-            console.log("".concat(move.name));
+            console.log("- NAME: ".concat(move.name, ", URL: ").concat(move.url));
         });
     };
     return Pokemon;
@@ -185,7 +170,7 @@ exports.Pokemon = Pokemon;
 var PokemonTrainer = (function () {
     function PokemonTrainer(name) {
         this.pokemons = [];
-        this.listOfIds = [2, 4];
+        this.listOfIds = [];
         this.name = name;
     }
     PokemonTrainer.prototype.getPokemons = function () {
@@ -195,12 +180,12 @@ var PokemonTrainer = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        listPokemons = this.listOfIds.map(function (id) { return getSinglePokemon(id); });
+                        listPokemons = this.listOfIds.map(function (id) { return getAllPokemonInfo(id); });
                         return [4, Promise.all(listPokemons)];
                     case 1:
                         results = _a.sent();
                         results.forEach(function (result) {
-                            _this.pokemons.push(new Pokemon(result.data));
+                            _this.pokemons.push(new Pokemon(result));
                         });
                         return [2];
                 }
@@ -223,6 +208,9 @@ var PokemonTrainer = (function () {
             });
         });
     };
+    PokemonTrainer = __decorate([
+        getNewPokemons(6)
+    ], PokemonTrainer);
     return PokemonTrainer;
 }());
 exports.PokemonTrainer = PokemonTrainer;

@@ -12,68 +12,59 @@ List of goals:
   - fill Moves with missing data from Types you can get the information from url of the move.
   - re-write decortator to get new pokemons Ids in PokemonTrainer class 
 */
+
+const MAX_POKEMONS = 500;
+
 export function getSinglePokemon(id: string | number) {
   return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
 }
 
-export async function getAllInfo(id: string | number){
-  try{
-    const response = await getSinglePokemon(id);
-    const values = JSON.stringify(response.data);
-    return values;
-  }catch(error){
-    console.log(error)
-  }
+export async function getAllPokemonInfo(pokemon: string | number) {
+  const response = await getSinglePokemon(pokemon);
+  
+  const name = response.data.name;
+  const id = response.data.id;
+  const moves: Move[] = [];
+  const types: Type[] = [];
+
+  getMoves(response, moves);
+
+  getTypes(response, types);
+  
+  return {name, id, moves, types};
 }
 
-export async function getTypes(id: string | number){
-  try{
-    const response = await getSinglePokemon(id);
-    const size = Object(response.data.types)
-    for(let i = 0; i < size.length; i++){
-      let types = JSON.stringify(response.data.types[i].type);
-      console.log(types);
+async function getTypes(response, types: Type[]){
+  response.data.types.forEach(pokemonTypes => {
+    const name = pokemonTypes.type.name;
+    const url = pokemonTypes.type.url
+    types.push({name, url});
+  }) 
+}
+
+async function getMoves(response, moves: Move[]) {
+  response.data.moves.forEach(pokeMoves => {
+    const name = pokeMoves.move.name;
+    const url = pokeMoves.move.url;
+    moves.push({name, url});
+  })
+}
+
+function getNewPokemons(teamSize: number){
+  return function <T extends { new(...args: any[]): { } }>(constructor: T) {
+    return class extends constructor {
+      listOfIds = getIDs(teamSize, MAX_POKEMONS);
     }
-  }catch(error){
-    console.log(error);
   }
 }
 
-export async function getMoves(id: string | number){
-  try{
-    const response = await getSinglePokemon(id);
-    const size = Object(response.data.moves);
-    const moves = JSON.stringify(response.data.moves);
-    for(let i=0; i<4; i++){
-      let index: number =Math.floor(Math.random()*size.length);
-      let moves = JSON.stringify(response.data.moves[index].move);
-      console.log(moves);
-    }
-    return moves;
-  }catch(error){
-    console.log(error);
+export function getIDs(size: number, max: number){
+  let pokemonID: number[] = [];
+  while(pokemonID.length < size){
+    let random = Math.floor(Math.random()*max);
+    pokemonID.push(random);
   }
-}
-
-function getNewPokemons<T extends { new(...args: any[]): {} }>(constructor: T) {
-  return class extends constructor {
-    listOfIds = [1,2,3];
-  }
-}
-
-function newPokemons<T>(): any {
-  return(
-    target: Object,
-    propertyKey: string,
-    descriptor: any
-  ) : TypedPropertyDescriptor<T> =>{
-    const newPokemon = descriptor.value;
-    descriptor.value = function(...args: any[])
-    {
-      return newPokemon.apply(this, args).then((res: Response) => res.json());
-    };
-    return descriptor;
-  }
+  return pokemonID;
 }
 
 type Move = {
@@ -103,36 +94,47 @@ export class Pokemon {
   buildFieldsPokemon(pokemon: any) {
     this.name = pokemon.name;
     this.id = pokemon.id;
-    //this.moves = getMoves(pokemon.move)
-    // you can only choose four moves from the list of moves
-    // this.moves = someFn(pokemon.moves);
+    this.moves = this.fourMoves(pokemon.moves);
+    this.types = pokemon.types;
+    
+  }
+  fourMoves(moves: Move[]){
+    let selectedMove: Move[] = [];
+    for(let i = 0; i < 4; i++){
+      let index = Math.floor(Math.random()*moves.length);
+      selectedMove.push(moves[index]);
+    }
+    return selectedMove;
   }
 
   displayInfo() {
-    console.log(`==========================`);
+    console.log(`============================== (＾ｖ＾)`);
     console.log(`${this.id} ${this.name}`);
+
+    console.log('\n 🔰 Types:');
     this.types.forEach(type => {
-      console.log(`${type.name}`);
+      console.log(`- NAME: ${type.name}, URL: ${type.url}`);
     });
+    console.log('\n ✨ Moves:')
     this.moves.forEach(move => {
-      console.log(`${move.name}`);
+      console.log(`- NAME: ${move.name}, URL: ${move.url}`);
     });
   }
 }
-
+@getNewPokemons(6)
 export class PokemonTrainer {
   name: string;
   pokemons: Pokemon[] = [];
-  listOfIds: number[] = [2,4];
+  listOfIds: number[] = [];
   constructor(name: string) {
     this.name = name;
   }
 
   async getPokemons() {
-    const listPokemons = this.listOfIds.map(id => getSinglePokemon(id));
+    const listPokemons = this.listOfIds.map(id => getAllPokemonInfo(id));
     const results = await Promise.all(listPokemons)
     results.forEach(result => {
-      this.pokemons.push(new Pokemon(result.data));
+      this.pokemons.push(new Pokemon(result));
     });
   }
 
