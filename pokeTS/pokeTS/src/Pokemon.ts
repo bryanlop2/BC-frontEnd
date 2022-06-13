@@ -13,7 +13,7 @@ List of goals:
   - re-write decortator to get new pokemons Ids in PokemonTrainer class 
 */
 
-const MAX_POKEMONS = 500;
+const MAX_POKEMONS = 1000;
 
 export function getSinglePokemon(id: string | number) {
   return axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -53,12 +53,12 @@ async function getMoves(response, moves: Move[]) {
 function getNewPokemons(teamSize: number){
   return function <T extends { new(...args: any[]): { } }>(constructor: T) {
     return class extends constructor {
-      listOfIds = getIDs(teamSize, MAX_POKEMONS);
+      listOfIds = getRandomIDs(teamSize, MAX_POKEMONS);
     }
   }
 }
 
-export function getIDs(size: number, max: number){
+export function getRandomIDs(size: number, max: number){
   let pokemonID: number[] = [];
   while(pokemonID.length < size){
     let random = Math.floor(Math.random()*max);

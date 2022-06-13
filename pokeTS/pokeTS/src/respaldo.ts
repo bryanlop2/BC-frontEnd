@@ -187,3 +187,11 @@ export class PokemonTrainer {
   }
 }
 */
+
+
+//https://firebase.google.com/docs/firestore/data-model?hl=es-419 
+//https://www.iteramos.com/pregunta/85996/subcolecciones-de-consulta-de-firestore
+//https://cloud.google.com/firestore/docs/query-data/queries?hl=es-419
+//https://firebase.google.com/docs/firestore/query-data/queries
+//https://cloud.google.com/firestore/docs/data-model?hl=es-419
+

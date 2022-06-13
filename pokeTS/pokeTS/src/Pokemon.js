@@ -57,9 +57,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.PokemonTrainer = exports.Pokemon = exports.getIDs = exports.getAllPokemonInfo = exports.getSinglePokemon = void 0;
+exports.PokemonTrainer = exports.Pokemon = exports.getRandomIDs = exports.getAllPokemonInfo = exports.getSinglePokemon = void 0;
 var axios_1 = require("axios");
-var MAX_POKEMONS = 500;
+var MAX_POKEMONS = 1000;
 function getSinglePokemon(id) {
     return axios_1["default"].get("https://pokeapi.co/api/v2/pokemon/".concat(id));
 }
@@ -114,14 +114,14 @@ function getNewPokemons(teamSize) {
             __extends(class_1, _super);
             function class_1() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.listOfIds = getIDs(teamSize, MAX_POKEMONS);
+                _this.listOfIds = getRandomIDs(teamSize, MAX_POKEMONS);
                 return _this;
             }
             return class_1;
         }(constructor));
     };
 }
-function getIDs(size, max) {
+function getRandomIDs(size, max) {
     var pokemonID = [];
     while (pokemonID.length < size) {
         var random = Math.floor(Math.random() * max);
@@ -129,7 +129,7 @@ function getIDs(size, max) {
     }
     return pokemonID;
 }
-exports.getIDs = getIDs;
+exports.getRandomIDs = getRandomIDs;
 var Pokemon = (function () {
     function Pokemon(pokemonResult) {
         this.name = '';
