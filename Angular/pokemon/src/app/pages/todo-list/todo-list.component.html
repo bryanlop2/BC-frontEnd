@@ -3,11 +3,16 @@
 
     <input type="text" 
         placeholder="What needs to be done?"
-        autofocus
         class="new-todo"
         id="toDo"
         value={{toDo}}
         #toDos
+        (change)="changesMade()"
     >
-    <h2>Here comes the data:</h2>
+    <button (click)="createTodo()" class="btn button" autofocus>Save Todo</button>
+    <ul class="todo-list">
+        <li *ngFor="let message of messages; let i = index">{{messages}}
+        <span (click)="deleteTodo(i)" class="button">[X]</span>
+        </li>
+    </ul>
 </div>

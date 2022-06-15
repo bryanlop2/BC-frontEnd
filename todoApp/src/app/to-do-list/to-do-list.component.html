@@ -1,0 +1,16 @@
+<div class="todoapp">
+    <h1>Todos</h1>
+        <input type="text"
+            class="new-todo"
+            autofocus
+            placeholder="What needs to be done?"
+            id="toDo"
+            [(ngModel)]="toDo"
+            (keyup.enter)="saveToDo()"
+        >
+    <ul class="todo-list">
+        <li *ngFor="let message of messages; let i = index">
+        <span (click)="deleteToDo(i)" class="button">{{message}}[X]</span>
+        </li>
+    </ul>
+</div>
