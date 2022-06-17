@@ -10,7 +10,10 @@
         >
     <ul class="todo-list">
         <li *ngFor="let message of messages; let i = index">
-        <span (click)="deleteToDo(i)" class="button">{{message}}[X]</span>
+		<input type="checkbox" (click)="changeStyle()">
+        <span [ngClass]="{'seleccionado': flag}" class="button">{{message}}</span>
+		<span (click)="deleteToDo(i)">[x]</span>
         </li>
     </ul>
 </div>
+<button class="btn-primary" (click)="deleteAll()">Delete All</button>

@@ -9,18 +9,25 @@ import { Component } from "@angular/core";
 export class TodoListComponent {
     toDo: string = '';
     messages: string[] = [];
+    flag: boolean = false;
 
-    constructor(){
-    }
+    constructor() { }
 
-    saveToDo(){
+    saveToDo() {
      this.messages.push(this.toDo);
-     console.log(this.toDo);
      this.toDo = '';
     }
 
-    deleteToDo(index: number){
-        this.messages.splice(index)
+    deleteToDo(index: number) {
+        this.messages.splice(index);
+    }
+    
+    deleteAll() {
+        this.messages = [];
+    }
+
+    changeStyle() {
+        this.flag = !this.flag;
     }
 
 }

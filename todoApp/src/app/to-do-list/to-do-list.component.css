@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+	--button-color: black;
+	--button-background-color: silver;
+}
+
 html,
 body {
 	margin: 0;
@@ -390,3 +395,20 @@ html .clear-completed:active {
 	box-shadow: 0 0 2px 2px #CF7D7D;
 	outline: 0;
 }
+
+.btn-primary {
+	padding: 4px;
+	color: #b83f45;
+	background-color: rgb(240, 227, 227);
+	border-color: #111111;
+	border-radius:6px;
+  }
+  
+  .btn-primary:hover {
+	box-shadow: inset 0 0 0 20rem rgb(209, 193, 162);
+  }
+
+  .seleccionado{
+	text-decoration:line-through;
+	color: red;
+  }
