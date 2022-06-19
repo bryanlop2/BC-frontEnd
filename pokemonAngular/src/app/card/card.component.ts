@@ -8,10 +8,8 @@ import { Component } from "@angular/core";
 })
 
 export class CardComponent {
+    private pokemonURL = 'https://pokeapi.co/api/v2/';
 
     constructor() { }
 
-    getPrincipalType(list: any[]) {
-        return list.filter(type => type.slot === 1)[0]?.type.name;
-    }
 }
