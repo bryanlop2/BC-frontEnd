@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CardComponent } from './card/card.component';
+import { PokedexService } from './services/pokedex.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -12,9 +14,10 @@ import { CardComponent } from './card/card.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [PokedexService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
