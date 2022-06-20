@@ -1,6 +1,4 @@
-body {
-    padding: 4px;
-  }
+
   .container {
     display: grid;
     grid-template-areas: "header header header header header header" ". card card card card ." "footer footer footer footer footer footer";
