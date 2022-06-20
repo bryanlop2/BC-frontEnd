@@ -1,63 +1,46 @@
-.header{
-    height: 150px;
-    display: flex;
-    align-items: center;
-}
-
-.pokemon__list{
-    height: 70vh;    
-    overflow-y: scroll;
-    background: green;
-    border-radius: 50px;
-}
-    
-.card{
-    display: flex;
-    justify-content: space-between;
-    padding-left: 20px;
-    background-color: lighten(green, 20%);
-    border-radius: 20px;
-    height: 200px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    overflow: hidden;
-}
-    
-.card__bg{
-    position: absolute;
-    bottom: 15%;
-    right: 10%;
-    color: white;
-    height: 130px;
-    z-index: 1;
-}
-    
-
-.card__info{
-    display: flex;
-    flex-direction: column;
-    color: white;
-    text-transform: capitalize;
-}
-
-h2{
-    border-radius: 40px;
-    font-family: 'Segoe UI', 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-span{
-    border-radius: 40px;
-    text-align: center;
-    margin-top: 5px;
-}
-    
-    
-.card__img{
+body {
+    padding: 4px;
+  }
+  .container {
+    display: grid;
+    grid-template-areas: "header header header header header header" ". card card card card ." "footer footer footer footer footer footer";
+    gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .container .header {
+    grid-area: header;
+    background-color: #082040;
+  }
+  .container .pokemon-card {
+    grid-area: card;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-right: 3rem;
-    padding-top: 15px;
-    padding-bottom: 15px;
-    z-index: 10;
-}
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .container .pokemon-card .pokemon {
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+    text-align: center;
+    -webkit-text-stroke: 0.4px #0f0a20;
+    color: #ffffff;
+  }
+  .container .pokemon-card .pokemon .img-container {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .container .footer {
+    grid-area: footer;
+    display: flex;
+    background-color: #082040;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  img {
+    max-width: 100%;
+  }
+  

@@ -10,7 +10,7 @@ import { PokedexService } from '../services/pokedex.service';
 
 export class CardComponent implements OnInit {
     pokemons = [];
-    data: any[] = [];
+    pokemonData: any[] = [];
 
     constructor(private pokedexService: PokedexService) { }
 
@@ -30,7 +30,7 @@ export class CardComponent implements OnInit {
                 image: res,
                 color: res
             };
-            this.data.push(pokemonResults);
+            this.pokemonData.push(pokemonResults);
             }
         );
         }

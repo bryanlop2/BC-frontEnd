@@ -1,7 +1,22 @@
-<h1>Hola pokemons!</h1>
-<div class="card"  *ngFor="let pokemon of data">
-    <div class="card-content">
-        <h2 class="pokemon-name">{{pokemon.name.name}}</h2>
-        <img class="pokemon-img" src={{pokemon.name.sprites.front_default}} alt="">
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://images.wikidexcdn.net/mwuploads/wikidex/9/97/latest/20090224005221/Pok%C3%A9mon_Pinball_Rub%C3%AD_y_Zafiro.png" alt="" height="160">
+        </div>
+
+        <div *ngFor="let pokemon of pokemonData">
+            <div class="pokemon-card" id="pokemonContent" >
+                <h2 class="pokemon-name">{{pokemon.name.name}}</h2>
+                <img class="pokemon-img" src={{pokemon.name.sprites.front_default}} alt="">
+            </div>
+        </div>
+        
     </div>
-</div>
+    <div class="footer">
+        <img src="https://suertesvillar.org/wp-content/uploads/2020/04/FACEBOOK.png" alt="" height="100">
+        <img src="https://cdn.pixabay.com/photo/2021/01/30/06/42/tiktok-5962992_960_720.png" alt="" height="100">
+        <img src="https://assets.turbologo.com/blog/es/2019/10/19133013/youtube-logo-illustration-958x575.jpg" alt="" height="100">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt=""  height="100">
+        <img src="https://i0.wp.com/nintendosoup.com/wp-content/uploads/2018/10/pokecen-singapore-featured-img-1-ninsoup.jpg?resize=900%2C576&ssl=1" alt=""  height="100">      
+    </div >
+</body>
