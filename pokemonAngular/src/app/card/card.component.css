@@ -1,44 +1,28 @@
-
-  .container {
-    display: grid;
-    grid-template-areas: "header header header header header header" ". card card card card ." "footer footer footer footer footer footer";
-    gap: 20px;
-    grid-template-columns: repeat(6, 1fr);
-  }
-  .header {
-    grid-area: header;
-    background-color: #082040;
-  }
-  
-  .card{
-    border-radius: 8px;
-    box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
-    text-align: center;
-    width: 240px;
-  }
-  .pokemon {
-    gap: 40px;
-    grid-area: card;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .img-container {
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 8px;
-    text-align: center;
-  }
-  .footer {
-    grid-area: footer;
-    display: flex;
-    background-color: #082040;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  img {
-    max-width: 100%;
-  }
-  
+.container {
+  display: grid;
+  grid-template-areas: "header header header header header header" ". card card card card ." "footer footer footer footer footer footer";
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.card{
+  border-radius: 8px;
+  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+  text-align: center;
+  width: 240px;
+}
+.pokemon {
+  gap: 40px;
+  grid-area: card;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.img-container {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 8px;
+  text-align: center;
+}
+img {
+  max-width: 100%;
+}
