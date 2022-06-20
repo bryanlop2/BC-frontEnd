@@ -9,9 +9,8 @@ import { PokedexService } from '../services/pokedex.service';
 })
 
 export class CardComponent implements OnInit {
-    pokemons = [];
     pokemonData: any[] = [];
-    pokemonBackgroundColor = [];
+    pokemonBackgroundColor: string[] = [];
     colors = {
         "1": "#4ca04c",//green
         "2": "#4ca04c",
@@ -170,7 +169,6 @@ export class CardComponent implements OnInit {
 
     ngOnInit(): void {
         this.getPokemons();
-        console.log(this.getBackgroundColors(3))
     }
 
     getPokemons(): void {
