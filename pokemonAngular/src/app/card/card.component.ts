@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { PokedexService } from '../services/pokedex.service';
+import { PokedexService, PokemonDetails } from '../services/pokedex.service';
 
 
 @Component({
@@ -26,9 +26,7 @@ export class CardComponent implements OnInit {
             res => {
                 pokemonResults = {
                 index: i,
-                name: res,
-                image: res,
-                color: res
+                data: res
             };
             this.pokemonData.push(pokemonResults);
             }

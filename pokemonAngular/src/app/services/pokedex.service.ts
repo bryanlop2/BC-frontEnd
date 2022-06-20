@@ -1,7 +1,5 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map } from "rxjs";
-import { Observable } from "rxjs/internal/Observable";
 
 export interface PokemonData {
     name: string;
@@ -9,9 +7,8 @@ export interface PokemonData {
 }
 
 export interface PokemonDetails {
-    id: number;
-    name: number;
-    sprite: string;
+    index: number;
+    data: Object;
 }
 
 @Injectable()
