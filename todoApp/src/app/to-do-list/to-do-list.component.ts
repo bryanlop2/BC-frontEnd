@@ -9,7 +9,7 @@ import { Component } from "@angular/core";
 export class TodoListComponent {
     toDo: string = '';
     messages: string[] = [];
-    flag: boolean = false;
+    iscomplete: boolean = false;
 
     constructor() { }
 
@@ -27,7 +27,7 @@ export class TodoListComponent {
     }
 
     changeStyle() {
-        this.flag = !this.flag;
+        this.iscomplete = !this.iscomplete;
     }
 
 }

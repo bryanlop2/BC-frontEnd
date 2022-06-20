@@ -11,9 +11,16 @@
     <ul class="todo-list">
         <li *ngFor="let message of messages; let i = index">
 		<input type="checkbox" (click)="changeStyle()">
-        <span [ngClass]="{'seleccionado': flag}" class="button">{{message}}</span>
+        <span [ngClass]="{'seleccionado': iscomplete}" class="button">{{message}}</span>
 		<span (click)="deleteToDo(i)">[x]</span>
         </li>
     </ul>
 </div>
+<div *ngIf="messages.length > 0 else noMessages">
+    <span>We have some Todo's</span>
+</div>
+<ng-template #noMessages>
+    <p>Hooray! No Todo's left</p>
+</ng-template>
+
 <button class="btn-primary" (click)="deleteAll()">Delete All</button>

@@ -174,7 +174,7 @@ export class CardComponent implements OnInit {
     getPokemons(): void {
         let pokemonResults;
     
-        for (let i = 1; i <= 100; i++) {
+        for (let i = 1; i <= 20; i++) {
         this.pokedexService.getPokemons(i).subscribe(
             res => {
                 pokemonResults = {
