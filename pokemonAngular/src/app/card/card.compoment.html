@@ -1,7 +1,7 @@
 <div class="container">
     <div class="pokemon" >
         <div class="card" *ngFor="let pokemon of pokemonData; let i = index">
-            <div class="pokemon-card" id="pokemonContent" [ngStyle]="{'background-color': getBackgroundColors(i)}">
+            <div class="pokemon-card" id="pokemonContent" [ngStyle]="{'background-color': getBackgroundColors(i), 'border-radius': '8px', 'padding-top': '10px'}">
                 <img class="img-container" src={{pokemon.data.sprites.front_default}} >
                 <h2 class="pokemon-name">{{pokemon.data.name}}</h2>
             </div>
