@@ -4,10 +4,10 @@
             <img src="https://images.wikidexcdn.net/mwuploads/wikidex/9/97/latest/20090224005221/Pok%C3%A9mon_Pinball_Rub%C3%AD_y_Zafiro.png" alt="" height="160">
         </div>
 
-        <div *ngFor="let pokemon of pokemonData">
+        <div class="pokemon" *ngFor="let pokemon of pokemonData">
             <div class="pokemon-card" id="pokemonContent" >
+                <img class="img-container" src={{pokemon.name.sprites.front_default}} alt="">
                 <h2 class="pokemon-name">{{pokemon.name.name}}</h2>
-                <img class="pokemon-img" src={{pokemon.name.sprites.front_default}} alt="">
             </div>
         </div>
         
