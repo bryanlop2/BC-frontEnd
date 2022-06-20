@@ -30,26 +30,10 @@ export class CardComponent implements OnInit {
                 image: res,
                 color: res
             };
-            //ponemos la data que viene del servicio en un arreglo
             this.data.push(pokemonResults);
             }
         );
         }
     }
 
-
-    /*getData() {
-        this.pokedexService.getPokemons().subscribe((
-            pokemon: PokemonData[]
-        )=>{this.getPokemon(pokemon)})
-    }
-
-    getPokemon(pokemons: PokemonData[]) {
-        const result: Observable<PokemonDetails>[] = [];
-        pokemons.map((data: PokemonData) => {
-            result.push(
-                this.pokedexService.getPokemonDetail(data.name)
-            );
-        });
-    }*/
 }

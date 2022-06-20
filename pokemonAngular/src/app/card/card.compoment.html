@@ -1,6 +1,7 @@
 <h1>Hola pokemons!</h1>
-<div class="card">
-    <div class="card-content" *ngFor="let pokemon of data">
-        <span>{{pokemon.name.name}}</span>
+<div class="card"  *ngFor="let pokemon of data">
+    <div class="card-content">
+        <h2 class="pokemon-name">{{pokemon.name.name}}</h2>
+        <img class="pokemon-img" src={{pokemon.name.sprites.front_default}} alt="">
     </div>
 </div>
