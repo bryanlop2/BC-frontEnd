@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="line">
+        <h4>Search: </h4>
+        <input type="text" 
+            name="filterPokemon"
+            placeholder="Search..."
+            [(ngModel)]="filterPokemon"
+            (ngModelChange)="searchPokemon($event)"
+            class="searchBar"
+        >
+    </div>
+    <div class="pokemon" >
+        <div class="card" *ngFor="let pokemon of pokemonData; let i = index">
+            <div class="pokemon-card" id="pokemonContent" [ngStyle]="{'background-color': getBackgroundColors(i)}">
+                <img class="img-container" src={{pokemon.data.sprites.front_default}} >
+                <h2 class="pokemon-name">{{pokemon.data.position}} {{pokemon.data.name}}</h2>
+            </div>
+        </div>
+    </div>
+</div>

@@ -285,7 +285,7 @@ const main_types = Object.values(colors)
 function getPokemonImageUri (id) {
     const imageId = ('00' + id).slice(-3); // para 1 => 001
     return `https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${imageId}.png`;
-  }
+}
 
   console.log(getPokemonImageUri(1));
 

@@ -1,15 +1,6 @@
-import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-
-export interface PokemonData {
-    name: string;
-    url: string;
-}
-
-export interface PokemonDetails {
-    index: number;
-    data: Object;
-}
+import { HttpClient } from '@angular/common/http';
+import { Pokemon } from './utils/types';
 
 @Injectable()
 export class PokedexService {
@@ -18,7 +9,9 @@ export class PokedexService {
     constructor(private http: HttpClient) { }
 
     getPokemons(pokemonId: string | number) {
-        return this.http.get(`${this.pokemonURL}/${pokemonId}`)
+        //for (let pokemonId = 1; pokemonId <= 20; pokemonId++) {
+            return this.http.get(`${this.pokemonURL}/${pokemonId}`)
+        //}
     }
 
 }
