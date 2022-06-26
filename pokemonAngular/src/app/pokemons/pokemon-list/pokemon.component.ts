@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PokedexService } from "../pokedex.service";
-import { colors, fetchPokemon } from '../utils/values';
+import { colors, fetchPokemon, getNumber } from '../utils/values';
 
 
 @Component({
@@ -18,12 +18,13 @@ export class PokemonListComponent implements OnInit {
     filterPokemon = '';
     ngOnInit(): void {
         this.getPokemons();
+        console.log(('00' + 100).slice(-3))
     }
 
     getPokemons() {
         let pokemonData;
         
-        for (let i = 1; i <= 150; i++) {
+        for (let i = 1; i <= 20; i++) {
         this.pokedexService.getPokemons(i).subscribe(res => {
                 pokemonData = {
                 index: i,
@@ -49,4 +50,7 @@ export class PokemonListComponent implements OnInit {
           })
     }
 
+    getNumbers(index: number) {
+        return ('00' + index).slice(-3);
+    }
 }

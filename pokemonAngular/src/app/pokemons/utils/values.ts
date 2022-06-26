@@ -164,3 +164,8 @@ export const fetchPokemon = async () =>{
         return pokemon;
     }
 }
+
+export function getNumber (id: string | number) {
+    const number = ('00' + id).slice(-3);
+    return number;
+}
