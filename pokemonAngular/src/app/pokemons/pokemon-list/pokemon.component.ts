@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { PokedexService } from "../pokedex.service";
-import { colors, fetchPokemon, getNumber } from '../utils/values';
+import { colors, fetchPokemon } from '../utils/values';
 
 
 @Component({
@@ -12,13 +12,14 @@ import { colors, fetchPokemon, getNumber } from '../utils/values';
 export class PokemonListComponent implements OnInit {
     pokemonData: any[] = [];
     pokemonBackgroundColor: string[] = [];
-    search: string = '';
-    
+    findPokemon = '';
+    result: string[] = [];
+
     constructor(private pokedexService: PokedexService) { }
-    filterPokemon = '';
+    
     ngOnInit(): void {
         this.getPokemons();
-        console.log(('00' + 100).slice(-3))
+        console.log(fetchPokemon());
     }
 
     getPokemons() {
@@ -41,13 +42,19 @@ export class PokemonListComponent implements OnInit {
         return color;
     }
 
-    searchPokemon(data: any) {
-        const newArray: any[] = [];
-        let content: any[] = newArray;
-        content = content.filter(function (ele, i, array) {
-            let arrayelement = ele.name.toLowerCase()
-            return arrayelement.includes(data)
-          })
+    searchPokemon(name: string) {
+        let pokeData;
+        console.log('escrito: ', name);
+        this.pokemonData.filter(res => {
+            pokeData = {
+                data: res.data.name
+        }
+        const resulto = pokeData.data;
+        if(resulto.toLowerCase().indexOf(name.toLowerCase()) > -1) {
+            console.log('resultados ', resulto);
+            this.result.push(resulto)
+        }  
+        });
     }
 
     getNumbers(index: number) {

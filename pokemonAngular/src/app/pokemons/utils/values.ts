@@ -161,11 +161,6 @@ export const fetchPokemon = async () =>{
     for(let i = 1; i <=50; i++){
         const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${i}`);
         const pokemon = await res.json();
-        return pokemon;
+        return pokemon.name;
     }
-}
-
-export function getNumber (id: string | number) {
-    const number = ('00' + id).slice(-3);
-    return number;
 }
