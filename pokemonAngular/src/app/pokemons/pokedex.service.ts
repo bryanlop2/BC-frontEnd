@@ -4,19 +4,21 @@ import { Pokemon } from './utils/types';
 import { Observable } from "rxjs/internal/Observable";
 import { catchError } from "rxjs";
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
+
 export class PokedexService {
-    private pokemonURL: string = 'https://pokeapi.co/api/v2/pokemon';
-    private searchURL: string = 'https://pokeapi.co/api/v2/pokemon'
 
     constructor(private http: HttpClient) { }
+    private api = 'https://pokeapi.co/api/v2';
 
-    getPokemons(pokemonId: string | number) {
-        return this.http.get(`${this.pokemonURL}/${pokemonId}`)
+    getPokemonList(offset: number = 0, limit: number = 25) {
+        return this.http.get(`${this.api}/pokemon?limit=${limit}&offset=${offset}`) as Observable<{results: Pokemon[]}>
     }
 
-    searchPokemon(pokemonName: string) {
-        return this.http.get(`${this.searchURL}/${pokemonName}`);
+    getPokemons(pokemonId: string | number) {
+        return this.http.get(`${this.api}/${pokemonId}`)
     }
 
 }

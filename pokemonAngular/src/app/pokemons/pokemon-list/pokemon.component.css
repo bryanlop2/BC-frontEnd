@@ -1,6 +1,6 @@
 .container {
   display: grid;
-  grid-template-areas: "header header header header header header" ". card card card card ." "footer footer footer footer footer footer";
+  grid-template-areas: "header header header header header header"  ". . search search . ." ". card card card card ." "footer footer footer footer footer footer";
   gap: 20px;
   grid-template-columns: repeat(6, 1fr);
 }
@@ -33,12 +33,15 @@ img {
 .searchBar{
   height:25px;
   width:296px;
-  border-radius: 30px;
-  background-color:wheat;
+  border-radius: 20px;
   border: 1px solid black;
   color:black;
+  margin-top: 10px;
 }
 .line{
+  grid-area: search;
+  display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 }

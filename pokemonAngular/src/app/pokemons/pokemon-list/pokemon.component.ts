@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { PokedexService } from "../pokedex.service";
-import { colors, fetchPokemon } from '../utils/values';
+import { Pokemon } from "../utils/types";
+import { colors, getPokemonImageUri } from '../utils/values';
 
 
 @Component({
@@ -8,32 +9,22 @@ import { colors, fetchPokemon } from '../utils/values';
     templateUrl: './pokemon.compoment.html',
     styleUrls: ['./pokemon.component.css']
 })
-//https://github.com/domini-code/filterPipe/blob/master/src/app/components/posts/posts.component.html
+
 export class PokemonListComponent implements OnInit {
-    pokemonData: any[] = [];
-    pokemonBackgroundColor: string[] = [];
+    pokemonData: Pokemon[] = [];
     findPokemon = '';
-    result: string[] = [];
+    limit: number = 50;
+    offset: number = 0;
+    searchedPokemons: Pokemon[] = [];
 
     constructor(private pokedexService: PokedexService) { }
     
     ngOnInit(): void {
-        this.getPokemons();
-        console.log(fetchPokemon());
-    }
-
-    getPokemons() {
-        let pokemonData;
-        
-        for (let i = 1; i <= 20; i++) {
-        this.pokedexService.getPokemons(i).subscribe(res => {
-                pokemonData = {
-                index: i,
-                data: res
-            };
-            this.pokemonData.push(pokemonData);
-        });
-        }
+        console.log('escrito', this.findPokemon)
+        this.pokedexService.getPokemonList(this.offset, this.limit)
+        .subscribe((data: {results: Pokemon[]}) => {this.pokemonData = [...this.pokemonData, ...data.results];
+        this.searchedPokemons = this.pokemonData});
+        this.offset += this.limit;
     }
 
     getBackgroundColors(index: number) {
@@ -42,22 +33,18 @@ export class PokemonListComponent implements OnInit {
         return color;
     }
 
-    searchPokemon(name: string) {
-        let pokeData;
-        console.log('escrito: ', name);
-        this.pokemonData.filter(res => {
-            pokeData = {
-                data: res.data.name
-        }
-        const resulto = pokeData.data;
-        if(resulto.toLowerCase().indexOf(name.toLowerCase()) > -1) {
-            console.log('resultados ', resulto);
-            this.result.push(resulto)
-        }  
-        });
+    searchPokemon(pokemon: string) {
+        console.log(pokemon);
+        this.pokemonData = this.searchedPokemons.filter(
+            res => res.name.includes(pokemon)
+        )
     }
 
     getNumbers(index: number) {
         return ('00' + index).slice(-3);
+    }
+
+    getImages(index: number) {
+        return getPokemonImageUri(index)
     }
 }
