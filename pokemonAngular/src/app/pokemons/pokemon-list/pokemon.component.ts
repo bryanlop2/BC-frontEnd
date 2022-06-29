@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { PokedexService } from "../pokedex.service";
 import { Pokemon } from "../utils/types";
 import { colors, getPokemonImageUri } from '../utils/values';
@@ -10,7 +10,7 @@ import { colors, getPokemonImageUri } from '../utils/values';
     styleUrls: ['./pokemon.component.css']
 })
 
-export class PokemonListComponent implements OnInit {
+export class PokemonListComponent implements OnInit, OnChanges {
     pokemonData: Pokemon[] = [];
     findPokemon = '';
     limit: number = 50;
@@ -19,12 +19,16 @@ export class PokemonListComponent implements OnInit {
     pokeMonResult: Pokemon[] = [];
 
     constructor(private pokedexService: PokedexService) { }
+    ngOnChanges(): void {
+        this.limit;
+        this.offset;
+    }
     
     ngOnInit(): void {
         this.pokedexService.getPokemonList(this.offset, this.limit)
         .subscribe((data: {results: Pokemon[]}) => {this.pokemonData = [...this.pokemonData, ...data.results];
         this.searchedPokemons = this.pokemonData});
-        this.offset += this.limit;
+        //this.offset += this.limit;
     }
 
     getBackgroundColors(pokemon: Pokemon) {
@@ -60,6 +64,12 @@ export class PokemonListComponent implements OnInit {
         const url = link.split('/'),
         index = url[url.length - 2];
         return +index;
+    }
+
+    loadMorePokemons() {
+        console.log('click this button');
+        this.offset = this.offset + 50;
+        console.log('new values: ' +'ofseet:', this.offset);
     }
 
 }

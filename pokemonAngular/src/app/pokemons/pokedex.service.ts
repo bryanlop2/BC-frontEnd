@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from './utils/types';
 import { Observable } from "rxjs/internal/Observable";
-import { catchError } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -10,6 +9,7 @@ import { catchError } from "rxjs";
 
 export class PokedexService {
 
+    next: number | string = 100;
     constructor(private http: HttpClient) { }
     private api = 'https://pokeapi.co/api/v2';
 
@@ -21,4 +21,7 @@ export class PokedexService {
         return this.http.get(`${this.api}/${pokemonId}`)
     }
 
+    getNext() {
+        const url = this.next === '' ? `${this.api}?limit=100` : this.next;
+    }
 }
