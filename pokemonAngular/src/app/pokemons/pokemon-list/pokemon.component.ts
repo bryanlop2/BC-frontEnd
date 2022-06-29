@@ -16,6 +16,7 @@ export class PokemonListComponent implements OnInit {
     limit: number = 50;
     offset: number = 0;
     searchedPokemons: Pokemon[] = [];
+    pokeMonResult: Pokemon[] = [];
 
     constructor(private pokedexService: PokedexService) { }
     
@@ -26,9 +27,11 @@ export class PokemonListComponent implements OnInit {
         this.offset += this.limit;
     }
 
-    getBackgroundColors(index: number) {
+    getBackgroundColors(pokemon: Pokemon) {
+        let color
         const mainColors = Object.values(colors);
-        const color = mainColors[index];
+        if(pokemon.url)
+        color = mainColors[this.getId(pokemon.url)-1];
         return color;
     }
 
@@ -39,11 +42,24 @@ export class PokemonListComponent implements OnInit {
         )
     }
 
-    getNumbers(index: number) {
-        return ('00' + index).slice(-3);
+    getNumbers(pokemon: Pokemon) {
+        if(pokemon.url)
+        return ('00' + this.getId(pokemon.url)).slice(-3);
+        else
+        return undefined
     }
 
-    getImages(index: number) {
-        return getPokemonImageUri(index)
+    getImages(pokemon: Pokemon) {
+        if(pokemon.url)
+        return getPokemonImageUri(this.getId(pokemon.url))
+        else
+        return null
     }
+
+    getId(link: string) {
+        const url = link.split('/'),
+        index = url[url.length - 2];
+        return +index;
+    }
+
 }

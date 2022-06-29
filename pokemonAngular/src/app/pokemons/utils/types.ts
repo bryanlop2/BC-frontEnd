@@ -4,4 +4,5 @@ export type Pokemon = {
     sprites?: string;
     image?: string;
     number?: number;
+    url?: string;
 }
