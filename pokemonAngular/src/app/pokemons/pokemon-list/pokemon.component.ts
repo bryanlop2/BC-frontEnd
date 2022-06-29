@@ -20,7 +20,6 @@ export class PokemonListComponent implements OnInit {
     constructor(private pokedexService: PokedexService) { }
     
     ngOnInit(): void {
-        console.log('escrito', this.findPokemon)
         this.pokedexService.getPokemonList(this.offset, this.limit)
         .subscribe((data: {results: Pokemon[]}) => {this.pokemonData = [...this.pokemonData, ...data.results];
         this.searchedPokemons = this.pokemonData});

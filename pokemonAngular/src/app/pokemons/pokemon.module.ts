@@ -5,12 +5,16 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from "../core/header/header.component";
 import { FooterComponent } from "../core/footer/footer.component";
 import { PokedexService } from "./pokedex.service";
+import { NotFoundComponent } from '../core/notFound/notFound.component';
+import { SearchComponent } from '../core/search/search.component';
 
 @NgModule({
     declarations: [
         PokemonListComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        NotFoundComponent,
+        SearchComponent
     ],
     imports: [
         BrowserModule,
@@ -19,7 +23,9 @@ import { PokedexService } from "./pokedex.service";
     exports: [
         PokemonListComponent,
         HeaderComponent,
-        FooterComponent
+        FooterComponent,
+        NotFoundComponent,
+        SearchComponent
     ],
     providers: [PokedexService]
 })

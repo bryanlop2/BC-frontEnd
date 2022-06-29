@@ -8,12 +8,16 @@
             class="searchBar"
         >
     </div>
+    <search-card class="lined"
+        (searchValue)="searchPokemon($event.target.value)"
+    ></search-card>
     <div class="pokemon" >
         <div class="card" *ngFor="let pokemon of pokemonData; let i = index">
             <div class="pokemon-card" id="pokemonContent" [ngStyle]="{'background-color': getBackgroundColors(i)}">
                 <img class="img-container" [src]="getImages(i+1)" >
-                <h2 class="pokemon-name">#{{getNumbers(i+1)}} {{pokemon.name}}</h2>
+                <h2 class="pokemon-name">#{{getNumbers(i+1)}} {{pokemon.name}}</h2>                
             </div>
         </div>
+        <not-found-card *ngIf="pokemonData.length == 0"></not-found-card>    
     </div>
 </div>
