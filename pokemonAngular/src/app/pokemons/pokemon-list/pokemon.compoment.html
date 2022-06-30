@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="line">
+    <!-- <div class="line">
         <input type="text" 
             name="filterPokemon"
             placeholder="Search..."
@@ -7,12 +7,12 @@
             (ngModelChange)="searchPokemon($event)"
             class="searchBar"
         >
-    </div>
-    <search-card class="lined"
+    </div> -->
+    <search-card class="line"
         (searchValue)="searchPokemon($event.target.value)"
     ></search-card>
     <div class="pokemon" >
-        <div class="card" *ngFor="let pokemon of pokemonData; let i = index">
+        <div class="card" *ngFor="let pokemon of pokemonData; let i = index" (click)="goToPokemonProfile()">
             <div class="pokemon-card" id="pokemonContent" [ngStyle]="{'background-color': getBackgroundColors(pokemon)}">
                 <img class="img-container" [src]="getImages(pokemon)" >
                 <h2 class="pokemon-name">#{{getNumbers(pokemon)}} {{pokemon.name}}</h2>                
@@ -20,5 +20,5 @@
         </div>
         <not-found-card *ngIf="pokemonData.length == 0"></not-found-card>    
     </div>
-    <button (click)="loadMorePokemons()">Load More</button>
+    <!--<button (click)="loadMorePokemons()">Load More</button>-->
 </div>

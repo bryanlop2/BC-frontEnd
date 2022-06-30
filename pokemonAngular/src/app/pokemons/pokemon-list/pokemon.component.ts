@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { PokedexService } from "../pokedex.service";
 import { Pokemon } from "../utils/types";
 import { colors, getPokemonImageUri } from '../utils/values';
@@ -18,7 +19,8 @@ export class PokemonListComponent implements OnInit, OnChanges {
     searchedPokemons: Pokemon[] = [];
     pokeMonResult: Pokemon[] = [];
 
-    constructor(private pokedexService: PokedexService) { }
+    constructor(private pokedexService: PokedexService,
+        private router: Router) { }
     ngOnChanges(): void {
         this.limit;
         this.offset;
@@ -72,4 +74,7 @@ export class PokemonListComponent implements OnInit, OnChanges {
         console.log('new values: ' +'ofseet:', this.offset);
     }
 
+    goToPokemonProfile() {
+        this.router.navigate([`/pokedex/${1}`])
+    }
 }

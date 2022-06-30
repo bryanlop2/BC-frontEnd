@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { PokemonModule } from './pokemons/pokemon.module';
 import { CoreModule } from './core/core.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

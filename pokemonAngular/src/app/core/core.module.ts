@@ -5,6 +5,7 @@ import { NotFoundComponent } from './notFound/notFound.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { SearchComponent } from './search/search.component';
     ],
     imports: [
         BrowserModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     exports: [
         HeaderComponent,
