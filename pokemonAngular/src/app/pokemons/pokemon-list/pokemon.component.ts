@@ -15,13 +15,12 @@ export class PokemonListComponent implements OnInit {
     pokemonData: Pokemon[] = [];
     findPokemon = '';
     limit: number = 50;
-    offset: number;
+    offset: number = 0;
     searchedPokemons: Pokemon[] = [];
     loading: boolean;
 
     constructor(private pokedexService: PokedexService,
         private router: Router) { 
-            this.offset = 0;
             this.loading = false;
         }
     
@@ -30,7 +29,7 @@ export class PokemonListComponent implements OnInit {
     }
 
     getPage(offset: number) {
-        this.pokedexService.getPokemonList(offset, this.limit)
+        this.pokedexService.getPokemonList(this.limit, offset)
         .subscribe((data: {results: Pokemon[]}) => {this.pokemonData = [...this.pokemonData, ...data.results];
         this.searchedPokemons = this.pokemonData});
     }
@@ -71,7 +70,7 @@ export class PokemonListComponent implements OnInit {
     }
 
     loadMorePokemons(): void {
-        this.offset += 50;
+        this.offset += this.limit;
         this.loading = true
         setTimeout (() => {
             this.loading = false;

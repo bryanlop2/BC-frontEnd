@@ -9,16 +9,11 @@ import { Observable } from "rxjs/internal/Observable";
 
 export class PokedexService {
 
-    next: number | string = 100;
     constructor(private http: HttpClient) { }
     private api = 'https://pokeapi.co/api/v2';
 
-    getPokemonList(offset: number = 0, limit: number = 25) {
+    getPokemonList(limit: number, offset: number) {
         return this.http.get(`${this.api}/pokemon?limit=${limit}&offset=${offset}`) as Observable<{results: Pokemon[]}>
-    }
-
-    getNext() {
-        const url = this.next === '' ? `${this.api}?limit=100` : this.next;
     }
 
     getPokemonDetails(pokemon: number | string) {

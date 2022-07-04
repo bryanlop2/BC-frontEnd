@@ -9,7 +9,7 @@ import { PokemonDetails } from '../utils/types';
   templateUrl: './pokemon-profile.component.html',
 })
 export class PokemonProfileComponent implements OnInit {
-  id: any = '';
+  id: any;
   fields?: any;
   pokemon: PokemonDetails[] = [];
   singlePokemonInfo: any;
@@ -18,13 +18,13 @@ export class PokemonProfileComponent implements OnInit {
     private location: Location,
     private pokedexService: PokedexService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.id = 0;
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.pokedexService.getPokemonList(this.id - 1).subscribe((details) => {
-      this.fields = details;
-    });
+    this.getInfoForFields();
   }
 
   goBack(): void {
@@ -32,9 +32,9 @@ export class PokemonProfileComponent implements OnInit {
     console.log(this.fields);
   }
 
-  getInfo() {
-    this.pokedexService.getPokemonDetails(this.id).subscribe(pokemon => {
-      this.singlePokemonInfo = pokemon;
+  getInfoForFields() {
+    this.pokedexService.getPokemonDetails(this.id).subscribe((details) => {
+      this.fields = details;
     });
   }
 }
