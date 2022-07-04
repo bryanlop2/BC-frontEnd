@@ -17,10 +17,12 @@ export class PokemonListComponent implements OnInit {
     limit: number = 50;
     offset: number;
     searchedPokemons: Pokemon[] = [];
+    loading: boolean;
 
     constructor(private pokedexService: PokedexService,
         private router: Router) { 
             this.offset = 0;
+            this.loading = false;
         }
     
     ngOnInit(): void {
@@ -70,6 +72,10 @@ export class PokemonListComponent implements OnInit {
 
     loadMorePokemons(): void {
         this.offset += 50;
+        this.loading = true
+        setTimeout (() => {
+            this.loading = false;
+         }, 1500);
         this.getPage(this.offset);
     }
 

@@ -75,3 +75,14 @@ img {
     right: 20px;
   }
 }
+
+.loading {
+  text-align: center;
+  position: fixed;
+  bottom: 300px;
+  left: 50%;
+}
+
+.blur {
+  -webkit-filter: blur(14px);
+}
