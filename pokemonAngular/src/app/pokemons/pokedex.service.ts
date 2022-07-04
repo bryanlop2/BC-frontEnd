@@ -17,11 +17,11 @@ export class PokedexService {
         return this.http.get(`${this.api}/pokemon?limit=${limit}&offset=${offset}`) as Observable<{results: Pokemon[]}>
     }
 
-    getPokemons(pokemonId: string | number) {
-        return this.http.get(`${this.api}/${pokemonId}`)
-    }
-
     getNext() {
         const url = this.next === '' ? `${this.api}?limit=100` : this.next;
+    }
+
+    getPokemonDetails(pokemon: number | string) {
+        return this.http.get(this.api + '/pokemon/'+ pokemon)
     }
 }

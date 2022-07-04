@@ -11,20 +11,17 @@ import { colors, getPokemonImageUri } from '../utils/values';
     styleUrls: ['./pokemon.component.css']
 })
 
-export class PokemonListComponent implements OnInit, OnChanges {
+export class PokemonListComponent implements OnInit {
     pokemonData: Pokemon[] = [];
     findPokemon = '';
     limit: number = 50;
     offset: number = 0;
     searchedPokemons: Pokemon[] = [];
-    pokeMonResult: Pokemon[] = [];
 
     constructor(private pokedexService: PokedexService,
-        private router: Router) { }
-    ngOnChanges(): void {
-        this.limit;
-        this.offset;
-    }
+        private router: Router) { 
+            //this.loadMorePokemons()
+        }
     
     ngOnInit(): void {
         this.pokedexService.getPokemonList(this.offset, this.limit)
@@ -68,13 +65,13 @@ export class PokemonListComponent implements OnInit, OnChanges {
         return +index;
     }
 
-    loadMorePokemons() {
+    loadMorePokemons(): number {
         console.log('click this button');
-        this.offset = this.offset + 50;
-        console.log('new values: ' +'ofseet:', this.offset);
+        return this.offset += 50;
     }
 
-    goToPokemonProfile() {
-        this.router.navigate([`/pokedex/${1}`])
+    goToPokemonProfile(pokemon: Pokemon) {
+        if(pokemon.url)
+        this.router.navigate([`/pokedex/${this.getId(pokemon.url)}`])
     }
 }
