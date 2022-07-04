@@ -15,19 +15,22 @@ export class PokemonListComponent implements OnInit {
     pokemonData: Pokemon[] = [];
     findPokemon = '';
     limit: number = 50;
-    offset: number = 0;
+    offset: number;
     searchedPokemons: Pokemon[] = [];
 
     constructor(private pokedexService: PokedexService,
         private router: Router) { 
-            //this.loadMorePokemons()
+            this.offset = 0;
         }
     
     ngOnInit(): void {
-        this.pokedexService.getPokemonList(this.offset, this.limit)
+        this.getPage(this.offset);
+    }
+
+    getPage(offset: number) {
+        this.pokedexService.getPokemonList(offset, this.limit)
         .subscribe((data: {results: Pokemon[]}) => {this.pokemonData = [...this.pokemonData, ...data.results];
         this.searchedPokemons = this.pokemonData});
-        //this.offset += this.limit;
     }
 
     getBackgroundColors(pokemon: Pokemon) {
@@ -65,9 +68,9 @@ export class PokemonListComponent implements OnInit {
         return +index;
     }
 
-    loadMorePokemons(): number {
-        console.log('click this button');
-        return this.offset += 50;
+    loadMorePokemons(): void {
+        this.offset += 50;
+        this.getPage(this.offset);
     }
 
     goToPokemonProfile(pokemon: Pokemon) {
