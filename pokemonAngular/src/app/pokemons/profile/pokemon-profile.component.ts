@@ -7,6 +7,7 @@ import { PokemonDetails } from '../utils/types';
 @Component({
   selector: 'pokemon-profile-card',
   templateUrl: './pokemon-profile.component.html',
+  styleUrls: ['./pokemon-profile.component.css']
 })
 export class PokemonProfileComponent implements OnInit {
   id: any;

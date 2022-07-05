@@ -1,13 +1,38 @@
-<div>Profile Pokemon</div>
-<button (click)="goBack()">Go back</button>
+<button (click)="goBack()" class="button">
+  <svg
+    width="20"
+    height="20"
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-6 w-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M10 19l-7-7m0 0l7-7m-7 7h18"
+    />
+  </svg>
+  Go back
+</button>
 
-<div>
-    <h1>Data: </h1>
-    <p>Number: {{id}}</p>
-    <p>Name: {{fields.name}}</p>
-    <p>Description: base experience {{fields.base_experience}}</p>
-    <p>Type: {{fields.types[0].type.name}}</p>
-    <p>Stats: {{fields.stats[0].base_stat}}</p>
-    <p>{{fields.stats[0].effort}}</p>
-    <img src="{{fields.sprites.front_default}}" alt="">
+<div id="container">
+  <div class="pokemon-details">
+    <h1 class="title">{{ fields.name }}</h1>
+    <ul>
+      <li><strong>Number : </strong>{{ id }}</li>
+      <li><strong>Name : </strong>{{ fields.name }}</li>
+      <li><strong>Type: </strong>{{ fields.types[0].type.name }}</li>
+      <li><strong>Stats: </strong>{{ fields.stats[0].base_stat }}</li>
+    </ul>
+  </div>
+
+  <div class="pokemon-image">
+    <img
+      src="{{ fields.sprites.other.dream_world.front_default }}"
+      alt="{{ fields.name }}"
+    />
+  </div>
 </div>
