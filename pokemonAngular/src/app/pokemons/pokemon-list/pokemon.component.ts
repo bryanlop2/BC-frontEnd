@@ -79,7 +79,6 @@ export class PokemonListComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 1500);
-    
   }
 
   goToPokemonProfile(pokemon: Pokemon) {

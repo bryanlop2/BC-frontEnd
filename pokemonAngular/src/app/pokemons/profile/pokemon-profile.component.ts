@@ -14,6 +14,7 @@ export class PokemonProfileComponent implements OnInit {
   fields?: any;
   pokemon: PokemonDetails[] = [];
   singlePokemonInfo: any;
+  species: any;
 
   constructor(
     private location: Location,
@@ -37,5 +38,11 @@ export class PokemonProfileComponent implements OnInit {
     this.pokedexService.getPokemonDetails(this.id).subscribe((details) => {
       this.fields = details;
     });
+  }
+
+  getSpecies() {
+    this.pokedexService.getPokemonSpecies(this.id).subscribe((species) => {
+      this.species = species;
+    })
   }
 }
