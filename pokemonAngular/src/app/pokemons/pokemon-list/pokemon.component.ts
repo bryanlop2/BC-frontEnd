@@ -1,12 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  OnChanges,
-  SimpleChanges,
-  Input,
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PokedexService } from '../pokedex.service';
 import { Pokemon } from '../utils/types';
@@ -40,6 +32,7 @@ export class PokemonListComponent implements OnInit {
       .subscribe((data: { results: Pokemon[] }) => {
         this.pokemonData = [...this.pokemonData, ...data.results];
         this.searchedPokemons = this.pokemonData;
+        this.loading = false;
         this.offset += this.limit;
       });
   }
@@ -76,9 +69,6 @@ export class PokemonListComponent implements OnInit {
   loadMorePokemons(): void {
     this.loading = true;
     this.getPage();
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500);
   }
 
   goToPokemonProfile(pokemon: Pokemon) {

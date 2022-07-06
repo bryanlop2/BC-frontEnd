@@ -11,7 +11,7 @@
             class="searchBar"
         >
     </div> -->
-    <search-card class="line"
+    <search-card class="pokemon-search"
         (searchValue)="searchPokemon($event.target.value)"
     ></search-card>
     <div class="pokemon " [ngClass]="{'blur': loading === true}">

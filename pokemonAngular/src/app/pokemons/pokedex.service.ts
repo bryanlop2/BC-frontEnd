@@ -11,7 +11,6 @@ export class PokedexService {
 
     constructor(private http: HttpClient) { }
     private api = 'https://pokeapi.co/api/v2';
-    private species = 'https://pokeapi.co/api/v2/pokemon-species/'
 
     getPokemonList(limit: number, offset: number) {
         return this.http.get(`${this.api}/pokemon?limit=${limit}&offset=${offset}`) as Observable<{results: Pokemon[]}>
@@ -22,6 +21,6 @@ export class PokedexService {
     }
 
     getPokemonSpecies(pokemon: number | string) {
-        return this.http.get(`${this.species}/${pokemon}`)
+        return this.http.get(`${this.api}/pokemon-species/${pokemon}`)
     }
 }

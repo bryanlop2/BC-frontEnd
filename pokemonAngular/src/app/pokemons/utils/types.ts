@@ -32,7 +32,11 @@ export type Type = {
 }
 
 export type Sprite = {
-    front_default: string;
+    other: {
+        dream_world: {
+            front_default: string;
+        }
+    }
 }
 
 export type Stat = {
@@ -40,4 +44,20 @@ export type Stat = {
     stat: {
         name: string;
     }
+}
+
+export type PokemonProfile = {
+    id?: number | string;
+    name: string;
+    types: Types[];
+    stats: Stats[];
+    sprites: Sprite;
+}
+
+export type Types = {
+    name: string;
+}
+
+export type Stats = {
+    base_stat : string | number;
 }

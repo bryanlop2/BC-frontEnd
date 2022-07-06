@@ -38,7 +38,7 @@ img {
   color: black;
   margin-top: 10px;
 }
-.line {
+.pokemon-search {
   grid-area: search;
   display: flex;
   justify-content: center;

@@ -11,7 +11,7 @@ import { PokemonDetails } from '../utils/types';
 })
 export class PokemonProfileComponent implements OnInit {
   id: any;
-  fields?: any;
+  fields: any;
   pokemon: PokemonDetails[] = [];
   singlePokemonInfo: any;
   species: any;

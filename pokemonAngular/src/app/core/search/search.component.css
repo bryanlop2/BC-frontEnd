@@ -6,10 +6,3 @@
     color:black;
     margin-top: 10px;
   }
-  .line{
-    grid-area: search;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
