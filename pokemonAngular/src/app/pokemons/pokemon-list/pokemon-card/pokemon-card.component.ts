@@ -6,15 +6,15 @@ import { colors, getPokemonImageUri } from '../../utils/values';
 @Component({
   selector: 'pokemons-card',
   templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.css']
+  styleUrls: ['./pokemon-card.component.css'],
 })
 export class PokemonCardComponent implements OnInit {
-    @Input() pokemonData: Pokemon[] = [];
-    loading: boolean;
-  
-    constructor(private router: Router) {
-      this.loading = false;
-    }
+  @Input() pokemonData: Pokemon[] = [];
+  loading: boolean;
+
+  constructor(private router: Router) {
+    this.loading = false;
+  }
 
   ngOnInit(): void {
     console.log('Method not implemented.');

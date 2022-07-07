@@ -45,5 +45,4 @@ export class PokemonListComponent implements OnInit {
     this.loading = true;
     this.getPage();
   }
-
 }

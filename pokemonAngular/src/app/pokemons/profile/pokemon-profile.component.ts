@@ -7,7 +7,7 @@ import { PokemonDetails, PokemonProfile } from '../utils/types';
 @Component({
   selector: 'pokemon-profile-card',
   templateUrl: './pokemon-profile.component.html',
-  styleUrls: ['./pokemon-profile.component.css']
+  styleUrls: ['./pokemon-profile.component.css'],
 })
 export class PokemonProfileComponent implements OnInit {
   id: any;
@@ -43,6 +43,6 @@ export class PokemonProfileComponent implements OnInit {
   getSpecies() {
     this.pokedexService.getPokemonSpecies(this.id).subscribe((species) => {
       this.species = species;
-    })
+    });
   }
 }
