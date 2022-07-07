@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PokedexService } from '../pokedex.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonDetails } from '../utils/types';
+import { PokemonDetails, PokemonProfile } from '../utils/types';
 
 @Component({
   selector: 'pokemon-profile-card',
@@ -11,7 +11,7 @@ import { PokemonDetails } from '../utils/types';
 })
 export class PokemonProfileComponent implements OnInit {
   id: any;
-  fields: any;
+  fields: any = {};
   pokemon: PokemonDetails[] = [];
   singlePokemonInfo: any;
   species: any;
