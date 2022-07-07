@@ -6,11 +6,13 @@ import { PokedexService } from "./pokedex.service";
 import { CoreModule } from '../core/core.module';
 import { PokemonProfileComponent } from './profile/pokemon-profile.component';
 import { PokemonRoutingModule } from '../app-routing.module';
+import { PokemonCardComponent } from './pokemon-list/pokemon-card/pokemon-card.component';
 
 @NgModule({
     declarations: [
         PokemonListComponent,
-        PokemonProfileComponent        
+        PokemonProfileComponent,
+        PokemonCardComponent        
     ],
     imports: [
         BrowserModule,
@@ -21,7 +23,8 @@ import { PokemonRoutingModule } from '../app-routing.module';
     exports: [
         PokemonListComponent,
         PokemonProfileComponent,
-        PokemonRoutingModule        
+        PokemonRoutingModule,
+        PokemonCardComponent        
     ],
     providers: [PokedexService]
 })

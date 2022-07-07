@@ -1,4 +1,4 @@
-.container {
+.pokemon-container {
   display: grid;
   grid-template-areas: "header header header header header header" ". . search search . ." ". card card card card ." "footer footer footer footer footer footer";
   gap: 20px;
@@ -12,7 +12,7 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.card {
+.pokemon-card-full {
   border-radius: 8px;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
   text-align: center;
@@ -22,7 +22,7 @@
   border-radius: 8px;
   padding-top: 10px;
 }
-.img-container {
+.pokemon-img {
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 8px;
   text-align: center;

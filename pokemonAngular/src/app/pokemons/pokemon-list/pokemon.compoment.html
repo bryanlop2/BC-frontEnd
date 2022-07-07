@@ -1,27 +1,10 @@
 <div class="loading" *ngIf="loading">
     <img src="../../../assets/Spinner-1s-200px (1).gif" alt="">
 </div>
-<div class="container">
-    <!-- <div class="line">
-        <input type="text" 
-            name="filterPokemon"
-            placeholder="Search..."
-            [ngModel]="findPokemon"
-            (ngModelChange)="searchPokemon($event)"
-            class="searchBar"
-        >
-    </div> -->
+<div class="pokemon-container">
     <search-card class="pokemon-search"
         (searchValue)="searchPokemon($event.target.value)"
     ></search-card>
-    <div class="pokemon " [ngClass]="{'blur': loading === true}">
-        <div class="card" *ngFor="let pokemon of pokemonData; let i = index" (click)="goToPokemonProfile(pokemon)">
-            <div class="pokemon-card" id="pokemonContent" [ngStyle]="{'background-color': getBackgroundColors(pokemon)}">
-                <img class="img-container" [src]="getImages(pokemon)" >
-                <h2 class="pokemon-name">#{{getNumbers(pokemon)}} {{pokemon.name}}</h2>                
-            </div>
-        </div>
-        <not-found-card *ngIf="pokemonData.length == 0"></not-found-card>    
-    </div>
+    <pokemons-card class="pokemon" [pokemonData]="pokemonData"></pokemons-card>>
     <button (click)="loadMorePokemons()" class="btn-flotante">Load More</button>
 </div>
