@@ -52,3 +52,12 @@
   cursor: pointer;
   margin-top: 20px;
 }
+
+.pokemon-generation {
+  text-transform: uppercase;
+  color: #082040;
+  position: absolute;
+  right: 6px;
+  font-size: 105%;
+  top: -14px;
+}

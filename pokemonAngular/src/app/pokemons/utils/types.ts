@@ -48,14 +48,16 @@ export type Stat = {
 
 export type PokemonProfile = {
   id?: number | string;
-  name: string;
-  types: Types[];
-  stats: Stats[];
-  sprites: Sprite;
+  name?: string;
+  types?: Types[];
+  stats?: Stats[];
+  sprites?: Sprite;
 };
 
 export type Types = {
-  name: string;
+  type: {
+    name: string;
+  };
 };
 
 export type Stats = {

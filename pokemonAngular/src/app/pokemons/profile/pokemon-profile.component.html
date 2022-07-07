@@ -11,12 +11,13 @@
     <ul>
       <li><strong>Number : </strong>{{ id }}</li>
       <li><strong>Name : </strong>{{ fields.name }}</li>
-      <li><strong>Type: </strong>{{ fields.types[0].type.name }}</li>
-      <li><strong>Stats: </strong>{{ fields.stats[0].base_stat }}</li>
+      <li *ngIf="fields.length !== 0"><strong>Type: </strong>{{ fields.types[0].type.name }}</li>
+      <li *ngIf="fields.length !== 0"><strong>Stats: </strong>{{ fields.stats[0].base_stat }}</li>
     </ul>
   </div>
 
   <div class="pokemon-image">
-    <img src="{{ fields.sprites.other.dream_world.front_default }}" alt="{{ fields.name }}"/>
+    <h4 class="pokemon-generation" *ngIf="id<9">{{generation?.name}}</h4>
+    <img src="{{ fields.sprites?.other.dream_world.front_default }}" alt="{{ fields.name }}"/>
   </div>
 </div>

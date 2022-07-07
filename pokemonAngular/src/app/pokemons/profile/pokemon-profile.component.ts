@@ -11,10 +11,12 @@ import { PokemonDetails, PokemonProfile } from '../utils/types';
 })
 export class PokemonProfileComponent implements OnInit {
   id: any;
-  fields: any = {};
+  fields: any = [];
   pokemon: PokemonDetails[] = [];
   singlePokemonInfo: any;
   species: any;
+  generation: any;
+  profile: PokemonProfile[] = [];
 
   constructor(
     private location: Location,
@@ -27,15 +29,15 @@ export class PokemonProfileComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getInfoForFields();
+    this.getGeneration();
   }
 
   goBack(): void {
     this.location.back();
-    console.log(this.fields);
   }
 
   getInfoForFields() {
-    this.pokedexService.getPokemonDetails(this.id).subscribe((details) => {
+    this.pokedexService.getPokemonDetails(this.id).subscribe((details: PokemonProfile) => {
       this.fields = details;
     });
   }
@@ -44,5 +46,11 @@ export class PokemonProfileComponent implements OnInit {
     this.pokedexService.getPokemonSpecies(this.id).subscribe((species) => {
       this.species = species;
     });
+  }
+
+  getGeneration() {
+    this.pokedexService.getPokemonGeneration(this.id).subscribe((generation) => {
+      this.generation = generation;
+    })
   }
 }
