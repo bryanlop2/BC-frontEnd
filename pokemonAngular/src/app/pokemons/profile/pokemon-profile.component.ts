@@ -28,7 +28,6 @@ export class PokemonProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.fields)
     this.getInfoForFields();
     this.getGeneration();
   }
