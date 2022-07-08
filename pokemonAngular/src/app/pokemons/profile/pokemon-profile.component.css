@@ -14,7 +14,7 @@
   text-align: left;
   padding: 52px;
   height: 100%;
-  float: left;
+  float: right;
   width: 40%;
   background: #082040;
   font-size: 105%;
@@ -30,7 +30,6 @@
   position: relative;
   height: 100%;
   width: 45%;
-  display: inline-block;
 }
 
 #container img {

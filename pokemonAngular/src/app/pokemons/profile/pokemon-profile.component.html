@@ -6,18 +6,17 @@
 </button>
 
 <div id="container">
-  <div class="pokemon-details">
-    <h1 class="title">{{ fields.name }}</h1>
-    <ul>
-      <li><strong>Number : </strong>{{ id }}</li>
-      <li><strong>Name : </strong>{{ fields.name }}</li>
-      <li *ngIf="fields.length !== 0"><strong>Type: </strong>{{ fields.types[0].type.name }}</li>
-      <li *ngIf="fields.length !== 0"><strong>Stats: </strong>{{ fields.stats[0].base_stat }}</li>
-    </ul>
-  </div>
-
   <div class="pokemon-image">
-    <h4 class="pokemon-generation" *ngIf="id<9">{{generation?.name}}</h4>
+    <h4 class="pokemon-generation" *ngIf="id < 9">{{generation?.name}}</h4>
     <img src="{{ fields.sprites?.other.dream_world.front_default }}" alt="{{ fields.name }}"/>
   </div>
+  <div class="pokemon-details">
+    <h2 class="title">{{ fields.name }} #{{getNumbers()}}</h2>
+    <ul>
+      <li *ngIf="fields.length !== 0"><strong>Type: </strong>{{ fields.types[0].type.name }}</li>
+      <li *ngIf="fields.length !== 0"><strong>Stats: </strong>{{ fields.stats[0].base_stat }}</li>
+      <li><strong>Height: </strong>{{fields.height}}"</li>
+      <li><strong>Weight: </strong>{{fields.weight}} lbs</li>
+    </ul>
+  </div> 
 </div>

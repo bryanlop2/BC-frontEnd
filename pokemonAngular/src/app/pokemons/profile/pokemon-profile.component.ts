@@ -28,6 +28,7 @@ export class PokemonProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.fields)
     this.getInfoForFields();
     this.getGeneration();
   }
@@ -52,5 +53,8 @@ export class PokemonProfileComponent implements OnInit {
     this.pokedexService.getPokemonGeneration(this.id).subscribe((generation) => {
       this.generation = generation;
     })
+  }
+  getNumbers() {
+    return ('00' + this.id).slice(-3);
   }
 }
