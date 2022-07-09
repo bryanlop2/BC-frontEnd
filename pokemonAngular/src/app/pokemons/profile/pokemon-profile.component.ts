@@ -7,7 +7,7 @@ import { PokemonDetails, PokemonProfile } from '../utils/types';
 @Component({
   selector: 'pokemon-profile-card',
   templateUrl: './pokemon-profile.component.html',
-  styleUrls: ['./pokemon-profile.component.css'],
+  styleUrls: ['./pokemon-profile.component.scss'],
 })
 export class PokemonProfileComponent implements OnInit {
   id: any;
@@ -28,6 +28,7 @@ export class PokemonProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.fields)
     this.getInfoForFields();
     this.getGeneration();
   }

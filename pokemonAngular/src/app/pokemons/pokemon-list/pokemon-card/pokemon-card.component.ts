@@ -17,7 +17,7 @@ export class PokemonCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Method not implemented.');
+    console.log('Load pokemons.');
   }
 
   getBackgroundColors(pokemon: Pokemon) {

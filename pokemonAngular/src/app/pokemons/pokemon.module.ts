@@ -5,8 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { PokedexService } from './pokedex.service';
 import { CoreModule } from '../core/core.module';
 import { PokemonProfileComponent } from './profile/pokemon-profile.component';
-import { PokemonRoutingModule } from '../app-routing.module';
 import { PokemonCardComponent } from './pokemon-list/pokemon-card/pokemon-card.component';
+import { CommonModule } from '@angular/common';
+import { PokemonRoutingModule } from './pokemon-routing.module';
 
 @NgModule({
   declarations: [
@@ -14,13 +15,8 @@ import { PokemonCardComponent } from './pokemon-list/pokemon-card/pokemon-card.c
     PokemonProfileComponent,
     PokemonCardComponent,
   ],
-  imports: [BrowserModule, FormsModule, CoreModule],
-  exports: [
-    PokemonListComponent,
-    PokemonProfileComponent,
-    PokemonRoutingModule,
-    PokemonCardComponent,
-  ],
-  providers: [PokedexService],
+  imports: [CommonModule, FormsModule, CoreModule, PokemonRoutingModule],
+  exports: [ ],
+  providers: [],
 })
 export class PokemonModule {}

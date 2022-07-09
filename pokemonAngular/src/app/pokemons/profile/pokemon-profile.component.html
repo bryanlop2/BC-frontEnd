@@ -5,6 +5,7 @@
   Go back
 </button>
 
+<div class="pokemon-container">
 <div id="container">
   <div class="pokemon-image">
     <h4 class="pokemon-generation" *ngIf="id < 9">{{ generation?.name }}</h4>
@@ -12,11 +13,22 @@
   </div>
   <div class="pokemon-details">
     <h2 class="pokemon-title">{{ fields.name }} #{{getNumbers()}}</h2>
-    <ul>
-      <li *ngIf="fields.length !== 0"><strong>Type: </strong>{{ fields.types[0].type.name }}</li>
-      <li *ngIf="fields.length !== 0"><strong>Stats: </strong>{{ fields.stats[0].base_stat }}</li>
+    <ul >
+      <li *ngFor="let charts of fields.types; let i = index">
+        <strong>Type-{{i+1}}: </strong>{{ fields.types[i].type.name }}</li>
       <li><strong>Height: </strong>{{ fields.height }}"</li>
       <li><strong>Weight: </strong>{{ fields.weight }} lbs</li>
     </ul>
   </div> 
+</div>
+</div>
+
+<div class="pokemon-stats">
+  <dl>
+    <dt>Stats: </dt>
+    <dd *ngFor="let charts of fields.stats; let i = index"
+    class="percentage percentage-{{fields.stats[i].base_stat}}">
+      <span class="stats-text">Base Stat: {{fields.stats[i].base_stat}}</span>
+    </dd>
+  </dl>
 </div>

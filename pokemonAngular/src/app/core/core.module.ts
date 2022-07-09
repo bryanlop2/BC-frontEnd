@@ -5,7 +5,7 @@ import { NotFoundComponent } from './notFound/notFound.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { SearchComponent } from './search/search.component';
-import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
     NotFoundComponent,
     SearchComponent,
   ],
-  imports: [BrowserModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule],
   exports: [
     HeaderComponent,
     FooterComponent,

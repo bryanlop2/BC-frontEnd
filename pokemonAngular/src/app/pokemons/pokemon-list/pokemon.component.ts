@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokedexService } from '../pokedex.service';
 import { Pokemon } from '../utils/types';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'pokemon-card',
@@ -9,18 +10,22 @@ import { Pokemon } from '../utils/types';
 })
 export class PokemonListComponent implements OnInit {
   pokemonData: Pokemon[] = [];
+  pokemon: Pokemon[] = [];
   findPokemon = '';
   limit: number = 50;
   offset: number = 0;
   searchedPokemons: Pokemon[] = [];
   loading: boolean;
 
-  constructor(private pokedexService: PokedexService) {
+  constructor(private router: ActivatedRoute,
+    private pokedexService: PokedexService) {
     this.loading = false;
   }
 
   ngOnInit(): void {
-    this.getPage();
+    const pokemons = this.router.snapshot.data["pokemons"];
+    this.pokemon = pokemons.results.map(this.normalizePokemon, this);
+    this.pokemonData = this.pokemon;
   }
 
   getPage() {
@@ -33,6 +38,13 @@ export class PokemonListComponent implements OnInit {
         this.loading = false;
         this.offset += this.limit;
       });
+  }
+
+  private normalizePokemon(pokemon: {name: string; url: string}) {
+    return({
+      name: pokemon.name,
+      url: pokemon.url
+    })
   }
 
   searchPokemon(pokemon: string) {
