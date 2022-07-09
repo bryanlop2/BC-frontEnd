@@ -7,16 +7,16 @@
 #container {
   box-shadow: 0 10px 10px 1px grey;
   border-radius: 5px;
-  overflow: hidden;
-  height: 350px;
+  height: 348px;
   width: 700px;
+  overflow: hidden;
 }
 
 .pokemon-details {
   position: relative;
   text-align: left;
   padding: 52px;
-  height: 100%;
+  height: 70%;
   float: right;
   width: 40%;
   background: #082040;
