@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadingStrategy, PreloadAllModules } from '@angular/router';
-import { PokemonListComponent } from './pokemons/pokemon-list/pokemon.component';
-import { PokemonProfileComponent } from './pokemons/profile/pokemon-profile.component';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 
 const routes: Routes = [
-  // { path: 'pokedex', component: PokemonListComponent },
-  // { path: 'pokedex/:id', component: PokemonProfileComponent },
-  // { path: '', redirectTo: 'pokedex', pathMatch: 'full' },
   {
     path: 'pokedex',
     loadChildren: ()=> import('./pokemons/pokemon.module').then(m => m.PokemonModule)
