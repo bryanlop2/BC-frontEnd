@@ -25,7 +25,6 @@
 
 <div class="pokemon-stats">
   <dl>
-    <dt>Stats: </dt>
     <dd *ngFor="let charts of fields.stats; let i = index"
     class="percentage percentage-{{fields.stats[i].base_stat}}">
       <span class="stats-text">Base Stat: {{fields.stats[i].base_stat}}</span>
