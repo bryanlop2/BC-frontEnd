@@ -32,4 +32,8 @@ export class PokedexService {
   getPokemonEvolutiontree(pokemon: number | string) {
     return this.http.get(`${this.api}/${this.evolution}/${pokemon}`)
   }
+
+  getPokemonImage(pokemon: number | string) {
+    return this.http.get(`${this.api}/${this.evolution}/${pokemon}`)
+  }
 }

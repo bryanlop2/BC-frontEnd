@@ -69,6 +69,10 @@ li {
   justify-content: center;
   align-items: center;
 }
+.border{
+  box-shadow: 0 10px 10px 1px grey;
+  border-radius: 5px;
+}
 
 dl {
   display: flex;
@@ -105,9 +109,9 @@ dt {
 
 .percentage {
   text-transform: uppercase;
-  width: 100%;
+  width: 84%;
   height: 40px;
-  margin-left: 124px;
+  margin-left: 134px;
   background: repeating-linear-gradient(
     to right,
     #ddd,
@@ -136,4 +140,40 @@ dt {
       width: $value;
     }
   }
+}
+
+.pokemon-evolution {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-evolution-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pokemon-evolution-container {
+  box-shadow: 0 10px 10px 1px grey;
+  border-radius: 5px;
+  height: 348px;
+  width: 700px;
+  margin-bottom: 20px;
+}
+
+.pokemon-rounded {
+  border: #082040 solid 2px;
+  border-radius: 50%;
+}
+
+.pokemon-arrow {
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30%;
+}
+.pokemon-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
