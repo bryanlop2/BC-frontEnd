@@ -37,3 +37,12 @@
   <h5>{{evolution?.chain.evolves_to[0].species.name}}</h5>
   <h5>{{evolution?.chain.evolves_to[0].evolves_to[0].species.name}}</h5>
 </div>
+
+<div>
+  <h4>POKEMON EVOLUTION V2</h4>
+  <div *ngFor="let evolution of pokemon.evolutions; let i = index">
+    <h5>{{pokemon.evolutions[i].id}}</h5>
+    <h5>{{pokemon.evolutions[i].name}}</h5>
+    <img src="{{pokemon.evolutions[i].image}}" alt="{{pokemon.evolutions[i].name}}">
+  </div>
+</div>

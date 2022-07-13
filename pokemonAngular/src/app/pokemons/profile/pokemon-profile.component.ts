@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PokedexService } from '../pokedex.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { PokemonDetails, PokemonProfile } from '../utils/types';
+import { Pokemon, PokemonDetails, PokemonProfile } from '../utils/types';
+import { getPokemonImageUri } from '../utils/values';
 
 @Component({
   selector: 'pokemon-profile-card',
@@ -12,11 +13,12 @@ import { PokemonDetails, PokemonProfile } from '../utils/types';
 export class PokemonProfileComponent implements OnInit {
   id: any;
   fields: any = [];
-  pokemon: PokemonDetails[] = [];
+  //pokemon: PokemonDetails[] = [];
   species: any;
   generation: any;
   evolution: any;
   profile: PokemonProfile[] = [];
+  pokemon: any = [];
 
   constructor(
     private location: Location,
@@ -31,6 +33,7 @@ export class PokemonProfileComponent implements OnInit {
     this.getInfoForFields();
     this.getGeneration();
     this.getEvolution();
+    this.getEvolutionChain()
   }
 
   goBack(): void {
@@ -38,10 +41,11 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   getInfoForFields() {
-    this.pokedexService.getPokemonDetails(this.id).subscribe((details: PokemonProfile) => {
-      this.fields = details;
-      console.log(this.fields)
-    });
+    this.pokedexService
+      .getPokemonDetails(this.id)
+      .subscribe((details: PokemonProfile) => {
+        this.fields = details;
+      });
   }
 
   getSpecies() {
@@ -52,9 +56,8 @@ export class PokemonProfileComponent implements OnInit {
 
   getGeneration() {
     this.pokedexService.getPokemonGeneration(this.id).subscribe((generation) => {
-      this.generation = generation;
-      console.log(this.generation)
-    })
+        this.generation = generation;
+      });
   }
 
   getNumbers() {
@@ -62,9 +65,40 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   getEvolution() {
-    this.pokedexService.getPokemonEvolutiontree(this.id).subscribe(evolution => {
-      this.evolution = evolution;
-      console.log(this.evolution)
-    })
+    this.pokedexService.getPokemonEvolutiontree(this.id).subscribe((evolution) => {
+        this.evolution = evolution;
+      });
+  }
+
+  getEvolutionChain() {
+      this.pokemon.evolutions = [];
+      this.pokedexService
+        .getPokemonSpecies(this.id).subscribe((response) => {
+          this.pokedexService.getPokemonEvolutiontree(this.id)
+            .subscribe((response: any) => this.getEvolves(response.chain));
+        });
+  }
+
+  getEvolves(chain: any) {
+    this.pokemon.evolutions.push({
+      id: this.getId(chain.species.url),
+      name: chain.species.name,
+      image: this.getImages(chain.species.url)
+    });
+
+    console.log(this.pokemon);
+    if (chain.evolves_to.length) {
+      this.getEvolves(chain.evolves_to[0]);
+    }
+  }
+
+  getId(url: string): number {
+    const splitUrl = url.split('/')
+    return +splitUrl[splitUrl.length - 2];
+  }
+
+  getImages(pokemon: string) {
+    if (pokemon) return getPokemonImageUri(this.getId(pokemon));
+    else return null;
   }
 }
