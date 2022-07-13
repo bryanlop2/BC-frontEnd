@@ -1,0 +1,37 @@
+.navBar {
+  display: flex;
+  background-color: #1b4377;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  padding-top: 30px;
+}
+
+.btn {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffffff;
+  border-radius: 10px;
+  letter-spacing: 2px;
+  background-color: #ee0f59;
+  padding: 18px 30px;
+  bottom: 40px;
+  right: 40px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+.btn:hover {
+  background-color: #d41c69;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.3);
+}

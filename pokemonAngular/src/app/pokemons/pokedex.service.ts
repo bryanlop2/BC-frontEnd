@@ -9,6 +9,7 @@ import { Observable } from 'rxjs/internal/Observable';
 export class PokedexService {
   constructor(private http: HttpClient) {}
   private api = 'https://pokeapi.co/api/v2';
+  private evolution = 'evolution-chain';
 
   getPokemonList(limit: number, offset: number) {
     return this.http.get(
@@ -26,5 +27,9 @@ export class PokedexService {
 
   getPokemonGeneration(pokemon: number | string) {
     return this.http.get(`${this.api}/generation/${pokemon}`);
+  }
+
+  getPokemonEvolutiontree(pokemon: number | string) {
+    return this.http.get(`${this.api}/${this.evolution}/${pokemon}`)
   }
 }

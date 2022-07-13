@@ -13,9 +13,9 @@ export class PokemonProfileComponent implements OnInit {
   id: any;
   fields: any = [];
   pokemon: PokemonDetails[] = [];
-  singlePokemonInfo: any;
   species: any;
   generation: any;
+  evolution: any;
   profile: PokemonProfile[] = [];
 
   constructor(
@@ -30,6 +30,7 @@ export class PokemonProfileComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getInfoForFields();
     this.getGeneration();
+    this.getEvolution();
   }
 
   goBack(): void {
@@ -39,6 +40,7 @@ export class PokemonProfileComponent implements OnInit {
   getInfoForFields() {
     this.pokedexService.getPokemonDetails(this.id).subscribe((details: PokemonProfile) => {
       this.fields = details;
+      console.log(this.fields)
     });
   }
 
@@ -51,9 +53,18 @@ export class PokemonProfileComponent implements OnInit {
   getGeneration() {
     this.pokedexService.getPokemonGeneration(this.id).subscribe((generation) => {
       this.generation = generation;
+      console.log(this.generation)
     })
   }
+
   getNumbers() {
     return ('00' + this.id).slice(-3);
+  }
+
+  getEvolution() {
+    this.pokedexService.getPokemonEvolutiontree(this.id).subscribe(evolution => {
+      this.evolution = evolution;
+      console.log(this.evolution)
+    })
   }
 }

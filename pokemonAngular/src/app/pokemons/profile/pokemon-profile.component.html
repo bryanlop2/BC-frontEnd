@@ -27,7 +27,13 @@
   <dl>
     <dd *ngFor="let charts of fields.stats; let i = index"
     class="percentage percentage-{{fields.stats[i].base_stat}}">
-      <span class="stats-text">Base Stat: {{fields.stats[i].base_stat}}</span>
+      <span class="stats-text"><strong>{{fields.stats[i].stat.name}}:</strong>{{fields.stats[i].base_stat}}</span>
     </dd>
   </dl>
+</div>
+
+<div class="pokemon-stats">
+  <h4>POKEMON EVOLUTION</h4>
+  <h5>{{evolution?.chain.evolves_to[0].species.name}}</h5>
+  <h5>{{evolution?.chain.evolves_to[0].evolves_to[0].species.name}}</h5>
 </div>
