@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-parent',
@@ -11,9 +11,8 @@ import { Component, OnInit } from '@angular/core';
   `,
   styleUrls: ['./onchange.css']
 })
-export class ParentComponent implements OnInit {
+export class ParentComponent{
   userLoggedIn: boolean = true;
   constructor() {}
 
-  ngOnInit() {}
 }

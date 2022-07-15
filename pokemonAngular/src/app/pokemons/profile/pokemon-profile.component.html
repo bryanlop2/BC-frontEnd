@@ -37,7 +37,7 @@
   <div class="pokemon-evolution">
     <div *ngFor="let evolution of pokemon.evolutions; let i = index">
       <img class="pokemon-rounded" src="{{pokemon.evolutions[i].image}}" alt="{{pokemon.evolutions[i].name}}">
-      <img *ngIf="i<2" class="pokemon-arrow" src="../../../assets/angle-right-solid.svg" height="60">
+      <img *ngIf="i<pokemon.evolutions.length-1" class="pokemon-arrow" src="../../../assets/angle-right-solid.svg" height="60">
       <h4 class="pokemon-name">{{pokemon.evolutions[i].name}} #{{pokemon.evolutions[i].id}}</h4>
     </div>
   </div>
