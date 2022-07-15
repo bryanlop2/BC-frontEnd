@@ -33,7 +33,8 @@ export class PokemonProfileComponent implements OnInit {
     this.getInfoForFields();
     this.getGeneration();
     this.getEvolution();
-    this.getEvolutionChain()
+    this.getEvolutionChain();
+    this.getSpecies();
   }
 
   goBack(): void {
@@ -46,7 +47,7 @@ export class PokemonProfileComponent implements OnInit {
       .subscribe((details: PokemonProfile) => {
         this.fields = details;
       });
-  }
+  } //this.route.data.subscribe()
 
   getSpecies() {
     this.pokedexService.getPokemonSpecies(this.id).subscribe((species) => {
@@ -86,7 +87,6 @@ export class PokemonProfileComponent implements OnInit {
       image: this.getImages(chain.species.url)
     });
 
-    console.log(this.pokemon);
     if (chain.evolves_to.length) {
       this.getEvolves(chain.evolves_to[0]);
     }
