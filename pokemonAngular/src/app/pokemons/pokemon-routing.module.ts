@@ -4,6 +4,7 @@ import { PokemonResolver } from '../pokemons/profile/pokemon.resolver';
 import { PokemonProfileComponent } from './profile/pokemon-profile.component';
 import { PokemonsResolver } from './pokemon-list/pokemons.resolver';
 import { NgModule } from '@angular/core';
+import { PokemonAddComponent } from './pokemon-add/pokemon-add.component';
 
 const routes: Routes = [
   {
@@ -14,12 +15,16 @@ const routes: Routes = [
     },
   },
   {
+    path: 'add',
+    component: PokemonAddComponent
+  },
+  {
     path: ':id',
     component: PokemonProfileComponent,
     resolve: {
       pokemon: PokemonResolver,
     },
-  },
+  }
 ];
 
 @NgModule({

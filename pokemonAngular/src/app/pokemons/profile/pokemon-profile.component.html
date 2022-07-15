@@ -15,7 +15,7 @@
     <h2 class="pokemon-title">{{ fields.name }} #{{getNumbers()}}</h2>
     <ul >
       <li *ngFor="let charts of fields.types; let i = index">
-        <strong>Type-{{i+1}}: </strong>{{ fields.types[i].type.name }}</li>
+      <strong>Type-{{i+1}}: </strong>{{ fields.types[i].type.name }}</li>
       <li><strong>Height: </strong>{{ fields.height }}"</li>
       <li><strong>Weight: </strong>{{ fields.weight }} lbs</li>
       <li><strong>Description: </strong>{{species?.flavor_text_entries[0].flavor_text}}</li>
@@ -37,7 +37,7 @@
   <h4 class="pokemon-evolution-title">EVOLUTIONS</h4>
   <div class="pokemon-evolution">
     <div *ngFor="let evolution of pokemon.evolutions; let i = index">
-      <img class="pokemon-rounded" src="{{pokemon.evolutions[i].image}}" alt="{{pokemon.evolutions[i].name}}">
+      <img class="pokemon-rounded" src="{{pokemon.evolutions[i].image}}" alt="{{pokemon.evolutions[i].name}}" (click)="goToPokemonProfile(pokemon.evolutions[i].id)">
       <img *ngIf="i<pokemon.evolutions.length-1" class="pokemon-arrow" src="../../../assets/angle-right-solid.svg" height="60">
       <h4 class="pokemon-name">{{pokemon.evolutions[i].name}} #{{pokemon.evolutions[i].id}}</h4>
     </div>

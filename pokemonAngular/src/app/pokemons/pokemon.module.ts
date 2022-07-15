@@ -1,12 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PokemonListComponent } from './pokemon-list/pokemon.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from '../core/core.module';
 import { PokemonProfileComponent } from './profile/pokemon-profile.component';
 import { PokemonCardComponent } from './pokemon-list/pokemon-card/pokemon-card.component';
 import { CommonModule } from '@angular/common';
 import { PokemonRoutingModule } from './pokemon-routing.module';
+import { MatCardModule} from '@angular/material/card'
+import {MatToolbarModule} from '@angular/material/toolbar'
+import {MatFormFieldModule} from '@angular/material/form-field'
+import {MatMenuModule} from '@angular/material/menu'
+import {MatButtonModule} from '@angular/material/button'
+import {MatIconModule} from '@angular/material/icon'
+import {MatInputModule} from '@angular/material/input'
+
+const materialModules = [
+  MatCardModule,
+  MatToolbarModule,
+  MatFormFieldModule,
+  MatMenuModule,
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule
+]
 
 @NgModule({
   declarations: [
@@ -14,7 +31,7 @@ import { PokemonRoutingModule } from './pokemon-routing.module';
     PokemonProfileComponent,
     PokemonCardComponent,
   ],
-  imports: [CommonModule, FormsModule, CoreModule, PokemonRoutingModule],
+  imports: [CommonModule, FormsModule, CoreModule, PokemonRoutingModule, ReactiveFormsModule, ...materialModules],
   exports: [ ],
   providers: [],
 })

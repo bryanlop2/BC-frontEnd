@@ -61,7 +61,7 @@ li {
   position: absolute;
   right: 6px;
   font-size: 105%;
-  top: -14px;
+  top: 4px;
 }
 
 .pokemon-stats {
@@ -177,4 +177,5 @@ dt {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-transform: uppercase;
 }

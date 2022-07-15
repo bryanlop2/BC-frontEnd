@@ -2,8 +2,12 @@ body {
   padding: 4px;
 }
 
-.nav {
+.header {
   display: flex;
+  flex-wrap: wrap;
+}
+
+.nav {
   justify-content: right;
   align-items: right;
   background-color: #082040;
@@ -24,4 +28,11 @@ body {
 
 .btn-primary:hover {
   background-color: #c941c9;
+}
+
+.img {
+  justify-content: left;
+  align-items: left;
+  background-color: #082040;
+  padding-right: 1358px;
 }

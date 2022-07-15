@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { pokemonColorMap } from '../../utils/pokemonColorHash';
 import { Pokemon } from '../../utils/types';
 import { colors, getPokemonImageUri } from '../../utils/values';
 
@@ -22,7 +23,7 @@ export class PokemonCardComponent implements OnInit {
 
   getBackgroundColors(pokemon: Pokemon) {
     let color;
-    const mainColors = Object.values(colors);
+    const mainColors = Object.values(pokemonColorMap);
     if (pokemon.url) color = mainColors[this.getId(pokemon.url) - 1];
     return color;
   }

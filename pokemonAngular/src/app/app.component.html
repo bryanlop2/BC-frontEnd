@@ -1,7 +1,15 @@
 <body>
-  <div class="nav">
-    <button type="button" class="btn-primary" routerLink="">Home</button>
-    <button type="button" class="btn-primary" routerLink="/pokedex">Pokedex</button>
+  <div class="header">
+    <img class="img" src="../../../assets/Pokémon_Pinball_Rubí_y_Zafiro.png" alt="" height="160" routerLink="/"/>
+    <div class="nav">
+      <button type="button" class="btn-primary" routerLink="">Home</button>
+      <button type="button" class="btn-primary" routerLink="/pokedex">
+        Pokedex
+      </button>
+      <button type="button" class="btn-primary" routerLink="pokedex/add">
+        Add New
+      </button>
+    </div>
   </div>
   <header-card></header-card>
   <router-outlet></router-outlet>

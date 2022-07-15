@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PokedexService } from '../pokedex.service';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemon, PokemonDetails, PokemonProfile } from '../utils/types';
 import { getPokemonImageUri } from '../utils/values';
 
@@ -23,7 +23,8 @@ export class PokemonProfileComponent implements OnInit {
   constructor(
     private location: Location,
     private pokedexService: PokedexService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
     this.id = 0;
   }
@@ -100,5 +101,9 @@ export class PokemonProfileComponent implements OnInit {
   getImages(pokemon: string) {
     if (pokemon) return getPokemonImageUri(this.getId(pokemon));
     else return null;
+  }
+
+  goToPokemonProfile(id: number) {
+    this.router.navigate([`/pokedex/${(id)}`]);
   }
 }
