@@ -14,6 +14,7 @@ import {MatMenuModule} from '@angular/material/menu'
 import {MatButtonModule} from '@angular/material/button'
 import {MatIconModule} from '@angular/material/icon'
 import {MatInputModule} from '@angular/material/input'
+import { PokemonAddComponent } from './pokemon-add/pokemon-add.component';
 
 const materialModules = [
   MatCardModule,
@@ -30,6 +31,7 @@ const materialModules = [
     PokemonListComponent,
     PokemonProfileComponent,
     PokemonCardComponent,
+    PokemonAddComponent
   ],
   imports: [CommonModule, FormsModule, CoreModule, PokemonRoutingModule, ReactiveFormsModule, ...materialModules],
   exports: [ ],

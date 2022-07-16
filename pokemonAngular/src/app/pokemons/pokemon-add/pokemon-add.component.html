@@ -1,15 +1,34 @@
-<form (ngSubmit)="onSubmit()">
-    <h2>Basic Information</h2>
+<form class="form-group" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <h2>ADD NEW POKEMON</h2>
     <div>
-        <!-- <mat-form-field appearance="fill"> -->
-            <input type="text" id="first-name" formControlName="pokemonName" matInput>
-        <!-- </mat-form-field> -->
+        <mat-form-field appearance="fill">
+            <mat-label for="pokemon-number">Number</mat-label>
+            <input type="text" id="pokemon-number" formControlName="pokemonNumber" matInput>
+        </mat-form-field>
     </div>
     <div>
-        <!-- <mat-form-field appearance="fill"> -->
-            <!-- <mat-label for="last-name">Last Name</mat-label> -->
-            <input type="text" id="last-name" formControlName="pokemonDescription" matInput>
-        <!-- </mat-form-field> -->
+        <mat-form-field appearance="fill">
+            <mat-label for="pokemon-name">Name</mat-label>
+            <input type="text" id="pokemon-name" formControlName="pokemonName" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label for="pokemon-type">Type</mat-label>
+            <input type="text" id="pokemon-type" formControlName="pokemonType" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label for="pokemon-generation">Generation</mat-label>
+            <input type="text" id="pokemon-generation" formControlName="pokemonGeneration" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label for="pokemon-description">Description</mat-label>
+            <input type="text" id="pokemon-description" formControlName="pokemonDescription" matInput>
+        </mat-form-field>
     </div>
     <button mat-raised-button color="accent" type="submit">Submit</button>
 </form>

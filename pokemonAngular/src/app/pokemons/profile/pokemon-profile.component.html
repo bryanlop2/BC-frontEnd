@@ -14,8 +14,9 @@
   <div class="pokemon-details">
     <h2 class="pokemon-title">{{ fields.name }} #{{getNumbers()}}</h2>
     <ul >
-      <li *ngFor="let charts of fields.types; let i = index">
-      <strong>Type-{{i+1}}: </strong>{{ fields.types[i].type.name }}</li>
+      <li *ngFor="let charts of fields.types; let i = index" >
+      <strong>Type-{{i+1}}: </strong>
+      <u class="type-text" [ngStyle]="{ 'background-color': getTypesColors(fields.types[i].type.name) }">{{ fields.types[i].type.name }}</u></li>
       <li><strong>Height: </strong>{{ fields.height }}"</li>
       <li><strong>Weight: </strong>{{ fields.weight }} lbs</li>
       <li><strong>Description: </strong>{{species?.flavor_text_entries[0].flavor_text}}</li>

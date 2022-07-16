@@ -3,7 +3,8 @@ import { PokedexService } from '../pokedex.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Pokemon, PokemonDetails, PokemonProfile } from '../utils/types';
-import { getPokemonImageUri } from '../utils/values';
+import { getPokemonImageUri, colors } from '../utils/values';
+import { pokemonTypeColorMap } from '../utils/pokemonColorHash';
 
 @Component({
   selector: 'pokemon-profile-card',
@@ -105,5 +106,18 @@ export class PokemonProfileComponent implements OnInit {
 
   goToPokemonProfile(id: number) {
     this.router.navigate([`/pokedex/${(id)}`]);
+  }
+
+  getTypesColors(type: string) {
+    let color;
+    const mainColors = Object.values(pokemonTypeColorMap);
+    if (type) color = mainColors[this.getColorIndex(type)];
+    return color;
+  }
+
+  getColorIndex(color: string | number) {
+    const colors = Object.keys(pokemonTypeColorMap);
+    const index = colors.findIndex(param => param === color)
+    return index;
   }
 }

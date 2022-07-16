@@ -26,6 +26,7 @@ export class PokemonListComponent implements OnInit {
     const pokemons = this.router.snapshot.data["pokemons"];
     this.pokemon = pokemons.results.map(this.normalizePokemon, this);
     this.pokemonData = this.pokemon;
+    this.getPage();
   }
 
   getPage() {

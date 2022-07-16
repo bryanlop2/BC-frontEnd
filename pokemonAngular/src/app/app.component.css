@@ -4,13 +4,11 @@ body {
 
 .header {
   display: flex;
-  flex-wrap: wrap;
-}
-
-.nav {
   justify-content: right;
   align-items: right;
   background-color: #082040;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .btn-primary {
@@ -30,9 +28,3 @@ body {
   background-color: #c941c9;
 }
 
-.img {
-  justify-content: left;
-  align-items: left;
-  background-color: #082040;
-  padding-right: 1358px;
-}
