@@ -59,9 +59,11 @@ export class PokemonProfileComponent implements OnInit {
 
   getEvolutionChain() {
     this.pokemon.evolutions = [];
-    this.pokedexService
-      .getPokemonEvolutiontree(this.pokedexService.evolutionId(this.id)) //id
-      .subscribe((response: any) => this.getEvolves(response.chain));
+    this.pokedexService.getPokemonSpecies(this.id).subscribe((response: any) => {
+      const id = this.getId(response.evolution_chain.url);
+      this.pokedexService.getPokemonEvolutiontree(id)
+        .subscribe((response: any) => this.getEvolves(response.chain));
+    })
   }
 
   getEvolves(chain: any) {
