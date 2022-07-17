@@ -14,9 +14,7 @@ import { pokemonTypeColorMap } from '../utils/pokemonColorHash';
 export class PokemonProfileComponent implements OnInit {
   id: any;
   fields: any = [];
-  //pokemon: PokemonDetails[] = [];
   species: any;
-  generation: any;
   evolution: any;
   profile: PokemonProfile[] = [];
   pokemon: any = [];
@@ -33,11 +31,8 @@ export class PokemonProfileComponent implements OnInit {
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getInfoForFields();
-    this.getGeneration();
-    this.getEvolution();
     this.getEvolutionChain();
     this.getSpecies();
-    //this.goToPokemonProfile(this.id)
   }
 
   goBack(): void {
@@ -58,36 +53,22 @@ export class PokemonProfileComponent implements OnInit {
     });
   }
 
-  getGeneration() {
-    this.pokedexService.getPokemonGeneration(this.id).subscribe((generation) => {
-        this.generation = generation;
-      });
-  }
-
   getNumbers() {
     return ('00' + this.id).slice(-3);
   }
 
-  getEvolution() {
-    this.pokedexService.getPokemonEvolutiontree(this.id).subscribe((evolution) => {
-        this.evolution = evolution;
-      });
-  }
-
   getEvolutionChain() {
-      this.pokemon.evolutions = [];
-      this.pokedexService
-        .getPokemonSpecies(this.id).subscribe((response) => {
-          this.pokedexService.getPokemonEvolutiontree(this.id)
-            .subscribe((response: any) => this.getEvolves(response.chain));
-        });
+    this.pokemon.evolutions = [];
+    this.pokedexService
+      .getPokemonEvolutiontree(this.pokedexService.evolutionId(this.id)) //id
+      .subscribe((response: any) => this.getEvolves(response.chain));
   }
 
   getEvolves(chain: any) {
     this.pokemon.evolutions.push({
       id: this.getId(chain.species.url),
       name: chain.species.name,
-      image: this.getImages(chain.species.url)
+      image: this.getImages(chain.species.url),
     });
 
     if (chain.evolves_to.length) {
@@ -96,7 +77,7 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   getId(url: string): number {
-    const splitUrl = url.split('/')
+    const splitUrl = url.split('/');
     return +splitUrl[splitUrl.length - 2];
   }
 
@@ -106,11 +87,9 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   goToPokemonProfile(id: number) {
-    this.router.navigateByUrl(`/pokedex/${(id)}`);
+    this.router.navigateByUrl(`/pokedex/${id}`);
     this.id = id;
     this.getInfoForFields();
-    this.getGeneration();
-    this.getEvolution();
     this.getEvolutionChain();
     this.getSpecies();
   }
@@ -124,7 +103,7 @@ export class PokemonProfileComponent implements OnInit {
 
   getColorIndex(color: string | number) {
     const colors = Object.keys(pokemonTypeColorMap);
-    const index = colors.findIndex(param => param === color)
+    const index = colors.findIndex((param) => param === color);
     return index;
   }
 }

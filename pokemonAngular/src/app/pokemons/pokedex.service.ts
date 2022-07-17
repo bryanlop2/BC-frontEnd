@@ -36,4 +36,16 @@ export class PokedexService {
   getPokemonImage(pokemon: number | string) {
     return this.http.get(`${this.api}/${this.evolution}/${pokemon}`)
   }
+
+  evolutionId(id: number): number {
+    if(id <=3){
+      return 1
+    }else if( id >3 && id <=6){
+      return 2
+    }else if( id >6 && id <=9){
+      return 3
+    }else{
+      return 4
+    }
+  }
 }
