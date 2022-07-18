@@ -91,14 +91,14 @@
 </form>
 <div class="show-pokemons">
   <button mat-raised-button color="primary" (click)="loadData()">
-    Show Pókemons
+    Show Pókemon
   </button>
 </div>
 <div class="pokemon" *ngIf="pokemons">
   <div class="pokemon-card-full">
-    <div class="pokemon-card">
-      <img src="{{pokemons.pokemonImgLink}}" alt="{{pokemons.pokemonName}}" />
-      <h1>Name : {{ pokemons.pokemonName }}</h1>
+    <div class="pokemon-card" [ngStyle]="{'background-color': '#4ca04c'}">
+      <img class="pokemon-img" src="{{pokemons.pokemonImgLink}}" alt="{{pokemons.pokemonName}}" />
+      <h2 class="pokemon-name">#{{pokemons.pokemonNumber}} {{ pokemons.pokemonName }}</h2>
     </div>
   </div>
 </div>
