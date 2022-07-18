@@ -2,7 +2,7 @@ body {
   padding: 4px;
 }
 
-.header {
+.navBar {
   display: flex;
   justify-content: right;
   align-items: right;

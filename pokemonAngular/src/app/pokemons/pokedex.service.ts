@@ -17,11 +17,11 @@ export class PokedexService {
     ) as Observable<{ results: Pokemon[] }>;
   }
 
-  getPokemonDetails(pokemon: number | string) {
+  getPokemonDetails(pokemon: number | string | null) {
     return this.http.get(this.api + '/pokemon/' + pokemon);
   }
 
-  getPokemonSpecies(pokemon: number | string) {
+  getPokemonSpecies(pokemon: number | string | null) {
     return this.http.get(`${this.api}/pokemon-species/${pokemon}`) as Observable<{ results: PokemonProfile[] }>;
   }
 
@@ -37,15 +37,4 @@ export class PokedexService {
     return this.http.get(`${this.api}/${this.evolution}/${pokemon}`)
   }
 
-  evolutionId(id: number): number {
-    if(id <=3){
-      return 1
-    }else if( id >3 && id <=6){
-      return 2
-    }else if( id >6 && id <=9){
-      return 3
-    }else{
-      return 4
-    }
-  }
 }

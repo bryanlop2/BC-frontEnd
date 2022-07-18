@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PokedexService } from '../pokedex.service';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Pokemon, PokemonDetails, PokemonProfile } from '../utils/types';
-import { getPokemonImageUri, colors } from '../utils/values';
+import { PokemonProfile } from '../utils/types';
+import { getPokemonImageUri } from '../utils/values';
 import { pokemonTypeColorMap } from '../utils/pokemonColorHash';
 
 @Component({
@@ -11,8 +11,9 @@ import { pokemonTypeColorMap } from '../utils/pokemonColorHash';
   templateUrl: './pokemon-profile.component.html',
   styleUrls: ['./pokemon-profile.component.scss'],
 })
+
 export class PokemonProfileComponent implements OnInit {
-  id: any;
+  id: string | number | null;
   fields: any = [];
   species: any;
   evolution: any;
@@ -40,9 +41,7 @@ export class PokemonProfileComponent implements OnInit {
   }
 
   getInfoForFields() {
-    this.pokedexService
-      .getPokemonDetails(this.id)
-      .subscribe((details: PokemonProfile) => {
+    this.pokedexService.getPokemonDetails(this.id).subscribe((details: PokemonProfile) => {
         this.fields = details;
       });
   }
@@ -83,7 +82,7 @@ export class PokemonProfileComponent implements OnInit {
     return +splitUrl[splitUrl.length - 2];
   }
 
-  getImages(pokemon: string) {
+  getImages(pokemon: string): string | null {
     if (pokemon) return getPokemonImageUri(this.getId(pokemon));
     else return null;
   }
@@ -96,7 +95,7 @@ export class PokemonProfileComponent implements OnInit {
     this.getSpecies();
   }
 
-  getTypesColors(type: string) {
+  getTypesColors(type: string): string | undefined {
     let color;
     const mainColors = Object.values(pokemonTypeColorMap);
     if (type) color = mainColors[this.getColorIndex(type)];

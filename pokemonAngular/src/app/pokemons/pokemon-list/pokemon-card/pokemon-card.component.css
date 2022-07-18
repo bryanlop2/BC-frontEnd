@@ -23,6 +23,7 @@
 
 .pokemon-name {
   text-transform: uppercase;
+  -webkit-text-stroke: 0.4px #c0bccf;
 }
 
 .pokemon-img {
