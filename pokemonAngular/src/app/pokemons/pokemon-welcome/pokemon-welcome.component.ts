@@ -9,6 +9,5 @@ import { Component, OnInit } from '@angular/core';
 export class PokemonWelcomeComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 }
