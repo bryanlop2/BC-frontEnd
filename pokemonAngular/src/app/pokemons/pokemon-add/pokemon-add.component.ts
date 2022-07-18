@@ -23,8 +23,9 @@ export class PokemonAddComponent implements OnInit {
     pokemonImg: [''],
   });
   pokemons: any;
-  data: any = {};
+  data: any[] = [];
   srcResult: any;
+  index: number = 0;
 
   constructor(private fb: FormBuilder) {}
 
@@ -43,14 +44,14 @@ export class PokemonAddComponent implements OnInit {
   }
 
   saveData() {
-    this.data = this.profileForm.value;
+    this.data.push(this.profileForm.value) ;
     localStorage.setItem('pokemonAPI', JSON.stringify(this.data))
   }
 
   loadData() {
     let data = localStorage.getItem('pokemonAPI');
     if(data)
-    this.pokemons = JSON.parse(data)
+    this.pokemons = JSON.parse(data);
   }
 
   onFileSelected() {
@@ -61,8 +62,6 @@ export class PokemonAddComponent implements OnInit {
   
       reader.onload = (e: any) => {
         this.srcResult = e.target.result;
-        console.log('tenemos: ',inputNode.files[0].name)
-        console.log('form: ', this.profileForm.value)
         this.srcResult = inputNode.files[0].name;
         const result = inputNode.files[0].name;
         this.profileForm.value.pokemonImg = `D:/${result}`;

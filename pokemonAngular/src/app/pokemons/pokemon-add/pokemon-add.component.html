@@ -95,10 +95,10 @@
   </button>
 </div>
 <div class="pokemon" *ngIf="pokemons">
-  <div class="pokemon-card-full">
+  <div class="pokemon-card-full" *ngFor="let pokemon of pokemons; let i = index">
     <div class="pokemon-card" [ngStyle]="{'background-color': '#4ca04c'}">
-      <img class="pokemon-img" src="{{pokemons.pokemonImgLink}}" alt="{{pokemons.pokemonName}}" />
-      <h2 class="pokemon-name">#{{pokemons.pokemonNumber}} {{ pokemons.pokemonName }}</h2>
+      <img class="pokemon-img" src="{{pokemons[i].pokemonImgLink}}" alt="{{pokemons[i].pokemonName}}" />
+      <h2 class="pokemon-name">#{{pokemons[i].pokemonNumber}} {{ pokemons[i].pokemonName }}</h2>
     </div>
   </div>
 </div>
