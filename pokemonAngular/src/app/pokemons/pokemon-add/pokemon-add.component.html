@@ -47,17 +47,17 @@
   </div>
   <div>
     <mat-form-field appearance="outline" hintLabel="Max 14 characters">
-      <mat-label for="pokemon-generation">Generation</mat-label>
+      <mat-label for="pokemon-imgLink">Img Link</mat-label>
       <input
         type="text"
-        id="pokemon-generation"
-        formControlName="pokemonGeneration"
+        id="pokemon-imgLink"
+        formControlName="pokemonImgLink"
         matInput
-        placeholder="Pókemon Generation"
+        placeholder="Pókemon Img Link"
         #input4
-        maxlength="14"
+        maxlength="70"
       />
-      <mat-hint align="end">{{ input4.value?.length || 0 }}/14</mat-hint>
+      <mat-hint align="end">{{ input4.value?.length || 0 }}/70</mat-hint>
     </mat-form-field>
   </div>
   <div>
@@ -75,19 +75,31 @@
       <mat-hint align="end">{{ input5.value?.length || 0 }}/50</mat-hint>
     </mat-form-field>
   </div>
+  <div>
+    <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
+    <input
+      hidden
+      (change)="onFileSelected()"
+      #fileInput
+      type="file"
+      id="file"
+    />
+  </div>
   <button mat-raised-button color="primary" type="submit" (click)="saveData()">
     Submit
   </button>
 </form>
-<div>
+<div class="show-pokemons">
   <button mat-raised-button color="primary" (click)="loadData()">
     Show Pókemons
   </button>
-  <div *ngIf="pokemons">
-    <h1>Id : {{ pokemons.pokemonNumber }}</h1>
-    <h1>Name : {{ pokemons.pokemonName }}</h1>
-    <h1>Type : {{ pokemons.pokemonType }}</h1>
-    <h1>Generation : {{ pokemons.pokemonGeneration }}</h1>
-    <h1>Description : {{ pokemons.pokemonDescription }}</h1>
+</div>
+<div class="pokemon" *ngIf="pokemons">
+  <div class="pokemon-card-full">
+    <div class="pokemon-card">
+      <img src="{{pokemons.pokemonImgLink}}" alt="{{pokemons.pokemonName}}" />
+      <h1>Name : {{ pokemons.pokemonName }}</h1>
+    </div>
   </div>
 </div>
+<br />

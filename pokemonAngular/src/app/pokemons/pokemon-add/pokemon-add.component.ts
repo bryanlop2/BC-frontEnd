@@ -18,11 +18,13 @@ export class PokemonAddComponent implements OnInit {
     pokemonNumber: ['', [Validators.required, Validators.minLength(1), Validators.maxLength(3)]],
     pokemonName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     pokemonType: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
-    pokemonGeneration: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]],
+    pokemonImgLink: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]],
     pokemonDescription: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+    pokemonImg: [''],
   });
   pokemons: any;
   data: any = {};
+  srcResult: any;
 
   constructor(private fb: FormBuilder) {}
 
@@ -50,4 +52,24 @@ export class PokemonAddComponent implements OnInit {
     if(data)
     this.pokemons = JSON.parse(data)
   }
+
+  onFileSelected() {
+    const inputNode: any = document.querySelector('#file');
+  
+    if (typeof (FileReader) !== 'undefined') {
+      const reader = new FileReader();
+  
+      reader.onload = (e: any) => {
+        this.srcResult = e.target.result;
+        console.log('tenemos: ',inputNode.files[0].name)
+        console.log('form: ', this.profileForm.value)
+        this.srcResult = inputNode.files[0].name;
+        const result = inputNode.files[0].name;
+        this.profileForm.value.pokemonImg = `D:/${result}`;
+      };
+  
+      reader.readAsArrayBuffer(inputNode.files[0]);
+    }
+  }
+  //https://assets.pokemon.com/assets/cms2/img/pokedex/detail/251.png
 }
