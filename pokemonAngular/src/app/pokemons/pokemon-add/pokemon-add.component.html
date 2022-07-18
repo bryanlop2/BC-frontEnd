@@ -1,39 +1,93 @@
 <form class="form-group" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-    <h2>ADD NEW POKEMON</h2>
-    <div>
-        <mat-form-field appearance="outline" hintLabel="Max 3 characters">
-            <mat-label for="pokemon-number">Number</mat-label>
-            <input type="text" id="pokemon-number" formControlName="pokemonNumber" matInput placeholder="Pókemon Number" #input1 maxlength="3">
-            <mat-hint align="end">{{input1.value?.length || 0}}/3</mat-hint>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline" hintLabel="Max 20 characters">
-            <mat-label for="pokemon-name">Name</mat-label>
-            <input type="text" id="pokemon-name" formControlName="pokemonName" matInput placeholder="Pókemon Name" #input2 maxlength="20">
-            <mat-hint align="end">{{input2.value?.length || 0}}/20</mat-hint>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline" hintLabel="Max 20 characters">
-            <mat-label for="pokemon-type">Type</mat-label>
-            <input type="text" id="pokemon-type" formControlName="pokemonType" matInput placeholder="Pókemon Type" #input3 maxlength="20">
-            <mat-hint align="end">{{input3.value?.length || 0}}/20</mat-hint>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline" hintLabel="Max 14 characters">
-            <mat-label for="pokemon-generation">Generation</mat-label>
-            <input type="text" id="pokemon-generation" formControlName="pokemonGeneration" matInput placeholder="Pókemon Generation" #input4 maxlength="14">
-            <mat-hint align="end">{{input4.value?.length || 0}}/14</mat-hint>
-        </mat-form-field>
-    </div>
-    <div>
-        <mat-form-field appearance="outline" hintLabel="Max 50 characters">
-            <mat-label for="pokemon-description">Description</mat-label>
-            <input type="text" id="pokemon-description" formControlName="pokemonDescription" matInput placeholder="Pókemon Description" #input5 maxlength="50">
-            <mat-hint align="end">{{input5.value?.length || 0}}/50</mat-hint>
-        </mat-form-field>
-    </div>
-    <button mat-raised-button color="accent" type="submit">Submit</button>
+  <h2>ADD NEW POKEMON</h2>
+  <div>
+    <mat-form-field appearance="outline" hintLabel="Max 3 characters">
+      <mat-label for="pokemon-number">Number</mat-label>
+      <input
+        type="text"
+        id="pokemon-number"
+        formControlName="pokemonNumber"
+        matInput
+        placeholder="Pókemon Number"
+        #input1
+        maxlength="3"
+      />
+      <mat-hint align="end">{{ input1.value?.length || 0 }}/3</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" hintLabel="Max 20 characters">
+      <mat-label for="pokemon-name">Name</mat-label>
+      <input
+        type="text"
+        id="pokemon-name"
+        formControlName="pokemonName"
+        matInput
+        placeholder="Pókemon Name"
+        #input2
+        maxlength="20"
+      />
+      <mat-hint align="end">{{ input2.value?.length || 0 }}/20</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" hintLabel="Max 20 characters">
+      <mat-label for="pokemon-type">Type</mat-label>
+      <input
+        type="text"
+        id="pokemon-type"
+        formControlName="pokemonType"
+        matInput
+        placeholder="Pókemon Type"
+        #input3
+        maxlength="20"
+      />
+      <mat-hint align="end">{{ input3.value?.length || 0 }}/20</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" hintLabel="Max 14 characters">
+      <mat-label for="pokemon-generation">Generation</mat-label>
+      <input
+        type="text"
+        id="pokemon-generation"
+        formControlName="pokemonGeneration"
+        matInput
+        placeholder="Pókemon Generation"
+        #input4
+        maxlength="14"
+      />
+      <mat-hint align="end">{{ input4.value?.length || 0 }}/14</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" hintLabel="Max 50 characters">
+      <mat-label for="pokemon-description">Description</mat-label>
+      <input
+        type="text"
+        id="pokemon-description"
+        formControlName="pokemonDescription"
+        matInput
+        placeholder="Pókemon Description"
+        #input5
+        maxlength="50"
+      />
+      <mat-hint align="end">{{ input5.value?.length || 0 }}/50</mat-hint>
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type="submit" (click)="saveData()">
+    Submit
+  </button>
 </form>
+<div>
+  <button mat-raised-button color="primary" (click)="loadData()">
+    Show Pókemons
+  </button>
+  <div *ngIf="pokemons">
+    <h1>Id : {{ pokemons.pokemonNumber }}</h1>
+    <h1>Name : {{ pokemons.pokemonName }}</h1>
+    <h1>Type : {{ pokemons.pokemonType }}</h1>
+    <h1>Generation : {{ pokemons.pokemonGeneration }}</h1>
+    <h1>Description : {{ pokemons.pokemonDescription }}</h1>
+  </div>
+</div>

@@ -19,8 +19,10 @@ export class PokemonAddComponent implements OnInit {
     pokemonName: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     pokemonType: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     pokemonGeneration: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(14)]],
-    pokemonDescription: ['', Validators.required, Validators.minLength(10), Validators.maxLength(50)],
+    pokemonDescription: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
   });
+  pokemons: any;
+  data: any = {};
 
   constructor(private fb: FormBuilder) {}
 
@@ -36,5 +38,16 @@ export class PokemonAddComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.profileForm.value);
+  }
+
+  saveData() {
+    this.data = this.profileForm.value;
+    localStorage.setItem('pokemonAPI', JSON.stringify(this.data))
+  }
+
+  loadData() {
+    let data = localStorage.getItem('pokemonAPI');
+    if(data)
+    this.pokemons = JSON.parse(data)
   }
 }
