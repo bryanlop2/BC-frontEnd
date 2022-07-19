@@ -11,7 +11,7 @@ export class PokemonsResolver implements Resolve<{results: Pokemon[]}> {
     constructor(private pokedexService: PokedexService) {}
 
     resolve() {
-        return this.pokedexService.getPokemonList(50, 0);
+        return this.pokedexService.getPokemonList(52, 0);
     }
 
 }

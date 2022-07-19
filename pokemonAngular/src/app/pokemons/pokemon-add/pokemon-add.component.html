@@ -32,13 +32,13 @@
   </div>
   <div>
     <mat-form-field appearance="outline" hintLabel="Max 20 characters">
-      <mat-label for="pokemon-type">Type</mat-label>
+      <mat-label for="pokemon-type">Color Hash</mat-label>
       <input
         type="text"
         id="pokemon-type"
         formControlName="pokemonType"
         matInput
-        placeholder="Pókemon Type"
+        placeholder="Pókemon Color Hash"
         #input3
         maxlength="20"
       />
@@ -46,7 +46,7 @@
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field appearance="outline" hintLabel="Max 14 characters">
+    <mat-form-field appearance="outline" hintLabel="Max 70 characters">
       <mat-label for="pokemon-imgLink">Img Link</mat-label>
       <input
         type="text"
@@ -75,17 +75,7 @@
       <mat-hint align="end">{{ input5.value?.length || 0 }}/50</mat-hint>
     </mat-form-field>
   </div>
-  <div>
-    <button type="button" mat-raised-button (click)="fileInput.click()">Choose File</button>
-    <input
-      hidden
-      (change)="onFileSelected()"
-      #fileInput
-      type="file"
-      id="file"
-    />
-  </div>
-  <button mat-raised-button color="primary" type="submit" (click)="saveData()">
+  <button mat-raised-button color="primary" type="submit" [disabled]="!profileForm.valid" (click)="saveData()">
     Submit
   </button>
 </form>
@@ -96,7 +86,7 @@
 </div>
 <div class="pokemon" *ngIf="pokemons">
   <div class="pokemon-card-full" *ngFor="let pokemon of pokemons; let i = index">
-    <div class="pokemon-card" [ngStyle]="{'background-color': '#4ca04c'}">
+    <div class="pokemon-card" [ngStyle]="{'background-color': pokemons[i].pokemonType}">
       <img class="pokemon-img" src="{{pokemons[i].pokemonImgLink}}" alt="{{pokemons[i].pokemonName}}" />
       <h2 class="pokemon-name">#{{pokemons[i].pokemonNumber}} {{ pokemons[i].pokemonName }}</h2>
     </div>

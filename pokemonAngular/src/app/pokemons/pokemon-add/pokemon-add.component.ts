@@ -20,12 +20,9 @@ export class PokemonAddComponent implements OnInit {
     pokemonType: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
     pokemonImgLink: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]],
     pokemonDescription: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-    pokemonImg: [''],
   });
   pokemons: any;
   data: any[] = [];
-  srcResult: any;
-  index: number = 0;
 
   constructor(private fb: FormBuilder) {}
 
@@ -40,12 +37,13 @@ export class PokemonAddComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.profileForm.value);
+    console.log(this.profileForm.value);
   }
 
   saveData() {
     this.data.push(this.profileForm.value) ;
-    localStorage.setItem('pokemonAPI', JSON.stringify(this.data))
+    localStorage.setItem('pokemonAPI', JSON.stringify(this.data));
+    this.profileForm.reset();
   }
 
   loadData() {
@@ -54,21 +52,6 @@ export class PokemonAddComponent implements OnInit {
     this.pokemons = JSON.parse(data);
   }
 
-  onFileSelected() {
-    const inputNode: any = document.querySelector('#file');
-  
-    if (typeof (FileReader) !== 'undefined') {
-      const reader = new FileReader();
-  
-      reader.onload = (e: any) => {
-        this.srcResult = e.target.result;
-        this.srcResult = inputNode.files[0].name;
-        const result = inputNode.files[0].name;
-        this.profileForm.value.pokemonImg = `D:/${result}`;
-      };
-  
-      reader.readAsArrayBuffer(inputNode.files[0]);
-    }
-  }
-  //https://assets.pokemon.com/assets/cms2/img/pokedex/detail/251.png
+  //https://assets.pokemon.com/assets/cms2/img/pokedex/detail/251.png #4ca04c
+  //https://assets.pokemon.com/assets/cms2/img/pokedex/detail/385.png #f0f060e6
 }

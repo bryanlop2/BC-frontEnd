@@ -9,10 +9,12 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pokemon.component.css'],
 })
 export class PokemonListComponent implements OnInit {
+  pokemons: any;
+  data: any[] = [];
   pokemonData: Pokemon[] = [];
   pokemon: Pokemon[] = [];
   findPokemon = '';
-  limit: number = 50;
+  limit: number = 52;
   offset: number = 0;
   searchedPokemons: Pokemon[] = [];
   loading: boolean;
@@ -27,6 +29,9 @@ export class PokemonListComponent implements OnInit {
     this.pokemon = pokemons.results.map(this.normalizePokemon, this);
     this.pokemonData = this.pokemon;
     this.getPage();
+    let data = localStorage.getItem('pokemonAPI');
+    if(data)
+    this.pokemons = JSON.parse(data);
   }
 
   getPage() {
