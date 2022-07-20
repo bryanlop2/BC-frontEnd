@@ -1,3 +1,7 @@
+<div class="alert" *ngIf="success">
+  <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+  <strong>Success!</strong> Pókemon added.
+</div>
 <form class="form-group" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
   <h2>ADD NEW POKEMON</h2>
   <div>

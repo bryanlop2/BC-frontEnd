@@ -23,6 +23,7 @@ export class PokemonAddComponent implements OnInit {
   });
   pokemons: any;
   data: any[] = [];
+  success: boolean = false;
 
   constructor(private fb: FormBuilder) {}
 
@@ -44,6 +45,7 @@ export class PokemonAddComponent implements OnInit {
     this.data.push(this.profileForm.value) ;
     localStorage.setItem('pokemonAPI', JSON.stringify(this.data));
     this.profileForm.reset();
+    this.success = true;
   }
 
   loadData() {
@@ -51,7 +53,5 @@ export class PokemonAddComponent implements OnInit {
     if(data)
     this.pokemons = JSON.parse(data);
   }
-
-  //https://assets.pokemon.com/assets/cms2/img/pokedex/detail/251.png #4ca04c
-  //https://assets.pokemon.com/assets/cms2/img/pokedex/detail/385.png #f0f060e6
+  
 }
